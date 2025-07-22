@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://2rmthep1slc2"]
-
-[ext_resource type="Script" uid="uid://v3n7ew7tsm13" path="res://Scenes/Overworld/overworld.gd" id="1_yivkk"]
-
-[node name="Overworld" type="Node2D"]
-script = ExtResource("1_yivkk")
