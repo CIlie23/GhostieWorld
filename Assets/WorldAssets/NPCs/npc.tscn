@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://nxmsorbii84k"]
+[gd_scene load_steps=8 format=3 uid="uid://nxmsorbii84k"]
 
 [ext_resource type="Texture2D" uid="uid://cgrv0nj4cmr7a" path="res://Assets/WorldAssets/NPCs/npc.png" id="1_m2mpp"]
+[ext_resource type="Texture2D" uid="uid://bvg6kjvrhl1aq" path="res://Assets/WorldAssets/NPCs/chatbox.png" id="2_n8nsj"]
 
 [sub_resource type="GDScript" id="GDScript_m2mpp"]
 script/source = "extends StaticBody2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var chat: Sprite2D = $Chat
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +17,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _on_mouse_entered() -> void:
+	print(\"hello\")
+	chat.set_visible(true)
+	
+func _on_mouse_exited() -> void:
+	chat.set_visible(false)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pasob"]
@@ -48,7 +57,16 @@ script = SubResource("GDScript_m2mpp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_pasob")
+one_way_collision = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lidf4")
 animation = &"idle"
+
+[node name="Chat" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -11)
+texture = ExtResource("2_n8nsj")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

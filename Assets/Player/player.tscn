@@ -42,7 +42,7 @@ func _physics_process(delta):
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6miq6"]
-size = Vector2(12, 22)
+size = Vector2(8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61lih"]
 atlas = ExtResource("1_61lih")
@@ -139,6 +139,7 @@ animations = [{
 script = SubResource("GDScript_61lih")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_6miq6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

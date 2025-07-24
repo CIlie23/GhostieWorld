@@ -9,8 +9,20 @@
 [sub_resource type="GDScript" id="GDScript_rmeny"]
 script/source = "extends Node2D
 
-func _ready() -> void:
-	print(\"hello world\")
+
+func _ready():
+	var mask: CharacterData = preload(\"res://Assets/Characters/Mask/mask.tres\")
+	print(mask.name)
+	for atk in mask.attacks:
+		print(\" - \", atk.name, \" (\", atk.power, \")\")
+
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	Global.areaName = \"outsidew lands\"
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	Global.areaName = \"balls lands\"
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmeny"]
@@ -38,13 +50,22 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
 [node name="Overworld" type="Node2D"]
+y_sort_enabled = true
 script = SubResource("GDScript_rmeny")
 
 [node name="Tree" parent="." instance=ExtResource("2_s368d")]
 position = Vector2(401, 412)
 
 [node name="NPC" parent="." instance=ExtResource("3_4qj6l")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(443, 461)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+polygon = PackedVector2Array(185, 115, 1006, 139, 989, 557, 588, 564, 157, 415)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -66,6 +87,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Player" parent="." instance=ExtResource("1_i8gr5")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(615, 407)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -82,3 +105,6 @@ offset_bottom = -64.0
 grow_horizontal = 1
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

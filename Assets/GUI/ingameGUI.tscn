@@ -5,19 +5,18 @@
 [sub_resource type="GDScript" id="GDScript_onc8g"]
 script/source = "extends Control
 
+@onready var region_name: Label = $VBoxContainer/RegionName
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	region_name.text = Global.areaName
 
-
-func _on_button_pressed() -> void:
-	print(\"hello\")
+func _on_party_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/character_selection.tscn\")
 "
 
 [node name="GUI" type="Control"]
@@ -35,7 +34,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 385
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="RegionName" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_onc8g")
 text = "CURRENT REGION"
@@ -43,24 +42,24 @@ text = "CURRENT REGION"
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Party" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_onc8g")
 text = "PARTY"
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Addons" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_onc8g")
 text = "ADDONS"
 
-[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Pets" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_onc8g")
 text = "PETS"
 
-[node name="Button4" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_onc8g")
 text = "SAVE"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Party" to="." method="_on_party_pressed"]

@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://s8mhmak16idf"]
+
+[ext_resource type="Script" uid="uid://b1rb8aabnlg2s" path="res://Scenes/character_selection.gd" id="1_fm6ub"]
+[ext_resource type="FontFile" uid="uid://nt8o1lj63fvq" path="res://Assets/Fonts/PublicPixel-rv0pA.ttf" id="1_mng1v"]
+[ext_resource type="Script" uid="uid://bohf3lm3y5w0j" path="res://Scripts/characterData.gd" id="2_235bc"]
+[ext_resource type="Resource" uid="uid://b4ed4cs5aufvy" path="res://Assets/Characters/Mask/mask.tres" id="3_mdkri"]
+[ext_resource type="Resource" uid="uid://dj8i0bqotksi0" path="res://Assets/Characters/Kullix/kullix.tres" id="4_3nbr6"]
+[ext_resource type="Resource" uid="uid://gjwhjsicmmwp" path="res://Assets/Characters/Jahtee/jahtee.tres" id="5_btth6"]
+[ext_resource type="Resource" uid="uid://b2cpmmbetyrb3" path="res://Assets/Characters/Vortex/Vortex.tres" id="6_ov5p2"]
+
+[node name="CharacterSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fm6ub")
+available_characters = Array[ExtResource("2_235bc")]([ExtResource("3_mdkri"), ExtResource("4_3nbr6"), ExtResource("5_btth6"), ExtResource("6_ov5p2")])
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_right = -275.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mng1v")
+text = "CHOOSE 4 CHARACTERS"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AvailableCharacters" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+columns = 8
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SelectedParty" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="PartySlot1" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/SelectedParty"]
+layout_mode = 2
+
+[node name="PartySlot2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/SelectedParty"]
+layout_mode = 2
+
+[node name="PartySlot3" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/SelectedParty"]
+layout_mode = 2
+
+[node name="PartySlot4" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/SelectedParty"]
+layout_mode = 2
+
+[node name="confirm_button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "CONFIRM"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/confirm_button" to="." method="_on_confirm_button_pressed"]

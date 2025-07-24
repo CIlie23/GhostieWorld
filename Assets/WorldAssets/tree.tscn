@@ -3,11 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://dfxy3fu1gfool" path="res://Assets/WorldAssets/tree.png" id="1_7ppvw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pasob"]
-size = Vector2(18, 24)
+size = Vector2(10, 6)
 
 [node name="Tree" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_pasob")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

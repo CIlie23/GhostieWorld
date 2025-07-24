@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=5 format=3 uid="uid://b4ed4cs5aufvy"]
+
+[ext_resource type="Script" uid="uid://ede5kx2d6hca" path="res://Scripts/attackData.gd" id="1_d87fq"]
+[ext_resource type="Texture2D" uid="uid://c4gelw5a5tsgy" path="res://Assets/Characters/Mask/maskPortrait.png" id="2_8kwsx"]
+[ext_resource type="Script" uid="uid://bohf3lm3y5w0j" path="res://Scripts/characterData.gd" id="2_6517r"]
+
+[sub_resource type="Resource" id="Resource_6517r"]
+script = ExtResource("1_d87fq")
+name = "Balls attack"
+description = "throws ball"
+power = 1
+cooldown = 1.0
+target_type = "enemy"
+metadata/_custom_type_script = "uid://ede5kx2d6hca"
+
+[resource]
+script = ExtResource("2_6517r")
+name = "MaskMajor"
+icon = ExtResource("2_8kwsx")
+attacks = Array[ExtResource("1_d87fq")]([SubResource("Resource_6517r")])
+metadata/_custom_type_script = "uid://bohf3lm3y5w0j"
