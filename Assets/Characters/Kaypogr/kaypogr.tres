@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=7 format=3 uid="uid://gjwhjsicmmwp"]
+
+[ext_resource type="Script" uid="uid://ede5kx2d6hca" path="res://Scripts/attackData.gd" id="1_j6tfa"]
+[ext_resource type="Script" uid="uid://bohf3lm3y5w0j" path="res://Scripts/characterData.gd" id="2_58ote"]
+[ext_resource type="Texture2D" uid="uid://b2hk2laeitm23" path="res://Assets/Characters/Kaypogr/kaypogr.png" id="2_bq6m0"]
+
+[sub_resource type="Resource" id="Resource_q17xf"]
+script = ExtResource("1_j6tfa")
+name = "asd"
+description = "sdad"
+power = 0
+cooldown = 1.0
+target_type = "enemy"
+metadata/_custom_type_script = "uid://ede5kx2d6hca"
+
+[sub_resource type="Resource" id="Resource_hxcbj"]
+script = ExtResource("1_j6tfa")
+name = "asd"
+description = "asd"
+power = 0
+cooldown = 1.0
+target_type = "enemy"
+metadata/_custom_type_script = "uid://ede5kx2d6hca"
+
+[sub_resource type="Resource" id="Resource_f8mgy"]
+script = ExtResource("1_j6tfa")
+name = "sad"
+description = "dasda"
+power = 0
+cooldown = 1.0
+target_type = "enemy"
+metadata/_custom_type_script = "uid://ede5kx2d6hca"
+
+[resource]
+script = ExtResource("2_58ote")
+name = "Kaypogr"
+icon = ExtResource("2_bq6m0")
+attacks = Array[ExtResource("1_j6tfa")]([SubResource("Resource_q17xf"), SubResource("Resource_hxcbj"), SubResource("Resource_f8mgy")])
+metadata/_custom_type_script = "uid://bohf3lm3y5w0j"

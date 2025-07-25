@@ -45,8 +45,8 @@ func update_party_slots():
 
 	confirm_button.disabled = selected_party.size() != MAX_PARTY_SIZE
 
-
 func _on_confirm_button_pressed() -> void:
 	print("hello")
 	Global.player_party = selected_party.duplicate()
+	#get_tree().change_scene_to_file("res://Scenes/battle_scene.tscn")
 	get_tree().change_scene_to_file("res://Scenes/overworld.tscn")

@@ -23,6 +23,11 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	Global.areaName = \"balls lands\"
+
+
+func _on_timer_timeout() -> void:
+	print(\"hey\")
+	get_tree().change_scene_to_file(\"res://Scenes/battle_scene.tscn\")
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmeny"]
@@ -106,5 +111,9 @@ grow_horizontal = 1
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

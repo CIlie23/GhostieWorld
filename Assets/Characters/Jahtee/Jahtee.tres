@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=4 format=3 uid="uid://db7jmd5abie2"]
+
+[ext_resource type="Script" uid="uid://ede5kx2d6hca" path="res://Scripts/attackData.gd" id="1_oi0e0"]
+[ext_resource type="Script" uid="uid://bohf3lm3y5w0j" path="res://Scripts/characterData.gd" id="2_dlh8n"]
+[ext_resource type="Texture2D" uid="uid://borntjd1xujla" path="res://Assets/Characters/Jahtee/jahtee.png" id="2_lvv03"]
+
+[resource]
+script = ExtResource("2_dlh8n")
+name = "Jahtee"
+icon = ExtResource("2_lvv03")
+attacks = Array[ExtResource("1_oi0e0")]([])
+metadata/_custom_type_script = "uid://bohf3lm3y5w0j"

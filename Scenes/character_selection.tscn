@@ -1,12 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://s8mhmak16idf"]
+[gd_scene load_steps=13 format=3 uid="uid://s8mhmak16idf"]
 
 [ext_resource type="Script" uid="uid://b1rb8aabnlg2s" path="res://Scenes/character_selection.gd" id="1_fm6ub"]
 [ext_resource type="FontFile" uid="uid://nt8o1lj63fvq" path="res://Assets/Fonts/PublicPixel-rv0pA.ttf" id="1_mng1v"]
 [ext_resource type="Script" uid="uid://bohf3lm3y5w0j" path="res://Scripts/characterData.gd" id="2_235bc"]
 [ext_resource type="Resource" uid="uid://b4ed4cs5aufvy" path="res://Assets/Characters/Mask/mask.tres" id="3_mdkri"]
 [ext_resource type="Resource" uid="uid://dj8i0bqotksi0" path="res://Assets/Characters/Kullix/kullix.tres" id="4_3nbr6"]
-[ext_resource type="Resource" uid="uid://gjwhjsicmmwp" path="res://Assets/Characters/Jahtee/jahtee.tres" id="5_btth6"]
+[ext_resource type="Resource" uid="uid://gjwhjsicmmwp" path="res://Assets/Characters/Kaypogr/kaypogr.tres" id="5_btth6"]
 [ext_resource type="Resource" uid="uid://b2cpmmbetyrb3" path="res://Assets/Characters/Vortex/Vortex.tres" id="6_ov5p2"]
+[ext_resource type="Resource" uid="uid://f8yk2mdb3j2e" path="res://Assets/Characters/Brandon/Brandon.tres" id="7_0txfd"]
+[ext_resource type="Resource" uid="uid://db7jmd5abie2" path="res://Assets/Characters/Jahtee/Jahtee.tres" id="8_6qipo"]
+[ext_resource type="Resource" uid="uid://ddn38sd52s4jr" path="res://Assets/Characters/RJ/rj.tres" id="9_0d3xi"]
+[ext_resource type="Resource" uid="uid://dupsomoop7c3k" path="res://Assets/Characters/Trishu/trishu.tres" id="10_awt4j"]
+[ext_resource type="Texture2D" uid="uid://dv47qmb01uea6" path="res://Assets/Enemy/enemy.png" id="12_6qipo"]
 
 [node name="CharacterSelection" type="Control"]
 layout_mode = 3
@@ -16,7 +21,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fm6ub")
-available_characters = Array[ExtResource("2_235bc")]([ExtResource("3_mdkri"), ExtResource("4_3nbr6"), ExtResource("5_btth6"), ExtResource("6_ov5p2")])
+available_characters = Array[ExtResource("2_235bc")]([ExtResource("3_mdkri"), ExtResource("4_3nbr6"), ExtResource("5_btth6"), ExtResource("6_ov5p2"), ExtResource("7_0txfd"), ExtResource("8_6qipo"), ExtResource("9_0d3xi"), ExtResource("10_awt4j")])
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 885.0
+offset_top = -1.0
+offset_right = 1151.0
+offset_bottom = 637.0
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mng1v")
+text = "Character name"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer2"]
+position = Vector2(131, 332)
+scale = Vector2(6.125, 6.53125)
+texture = ExtResource("12_6qipo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 886.0
+offset_top = 504.0
+offset_right = 1152.0
+offset_bottom = 584.0
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mng1v")
+disabled = true
+text = "Ability 1"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mng1v")
+disabled = true
+text = "Ability 1"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mng1v")
+disabled = true
+text = "Ability 1"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
