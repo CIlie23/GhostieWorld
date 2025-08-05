@@ -9,9 +9,9 @@
 [ext_resource type="Resource" uid="uid://b2cpmmbetyrb3" path="res://Assets/Characters/Vortex/Vortex.tres" id="6_ov5p2"]
 [ext_resource type="Resource" uid="uid://f8yk2mdb3j2e" path="res://Assets/Characters/Brandon/Brandon.tres" id="7_0txfd"]
 [ext_resource type="Resource" uid="uid://db7jmd5abie2" path="res://Assets/Characters/Jahtee/Jahtee.tres" id="8_6qipo"]
-[ext_resource type="Resource" uid="uid://ddn38sd52s4jr" path="res://Assets/Characters/RJ/rj.tres" id="9_0d3xi"]
+[ext_resource type="Resource" path="res://Assets/Characters/RJ/rj.tres" id="9_0d3xi"]
 [ext_resource type="Resource" uid="uid://dupsomoop7c3k" path="res://Assets/Characters/Trishu/trishu.tres" id="10_awt4j"]
-[ext_resource type="Texture2D" uid="uid://dv47qmb01uea6" path="res://Assets/Enemy/enemy.png" id="12_6qipo"]
+[ext_resource type="Texture2D" uid="uid://dv47qmb01uea6" path="res://Assets/Enemy/EnemyResources/dummy/enemy.png" id="12_6qipo"]
 
 [node name="CharacterSelection" type="Control"]
 layout_mode = 3
@@ -30,10 +30,9 @@ offset_top = -1.0
 offset_right = 1151.0
 offset_bottom = 637.0
 
-[node name="Label" type="Label" parent="VBoxContainer2"]
+[node name="CharacterName" type="Label" parent="VBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_mng1v")
-text = "Character name"
 horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="VBoxContainer2"]
@@ -111,9 +110,16 @@ layout_mode = 2
 [node name="PartySlot4" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/SelectedParty"]
 layout_mode = 2
 
+[node name="reset_button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mng1v")
+text = "RESET"
+
 [node name="confirm_button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mng1v")
 disabled = true
 text = "CONFIRM"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/reset_button" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/confirm_button" to="." method="_on_confirm_button_pressed"]

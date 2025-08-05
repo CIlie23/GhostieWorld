@@ -1,2 +1,3 @@
+EntityStats
 CharacterData
 Resource

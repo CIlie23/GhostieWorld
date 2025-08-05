@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfldoh7h526x5"
-path="res://.godot/imported/RJ.png-b0bc3f4b2811961286d47355b179e7bf.ctex"
+uid="uid://b77m5sn3l2xge"
+path="res://.godot/imported/tiles.png-2b3617a6c7171b26bf53d447ee1c3433.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/RJ/RJ.png"
-dest_files=["res://.godot/imported/RJ.png-b0bc3f4b2811961286d47355b179e7bf.ctex"]
+source_file="res://Assets/WorldAssets/tiles.png"
+dest_files=["res://.godot/imported/tiles.png-2b3617a6c7171b26bf53d447ee1c3433.ctex"]
 
 [params]
 

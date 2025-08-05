@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=3 format=3 uid="uid://dxaacemuypddu"]
+
+[ext_resource type="Script" uid="uid://fbj1xoxy1o5o" path="res://Scripts/entity_stats.gd" id="1_0metp"]
+[ext_resource type="Texture2D" uid="uid://bes5fbxiuil4w" path="res://Assets/Enemy/EnemyResources/bug/bug.png" id="2_12njp"]
+
+[resource]
+script = ExtResource("1_0metp")
+Name = "bug"
+Attack = 1
+Health = 10
+Defense = 10
+Mana = 1
+sprite = ExtResource("2_12njp")
+metadata/_custom_type_script = "uid://fbj1xoxy1o5o"

@@ -8,7 +8,7 @@
 script = ExtResource("1_d87fq")
 name = "Balls attack"
 description = "throws ball"
-power = 1
+power = 50
 cooldown = 1.0
 target_type = "enemy"
 metadata/_custom_type_script = "uid://ede5kx2d6hca"

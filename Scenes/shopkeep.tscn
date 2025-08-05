@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://c47r8sv0pcghh"]
+
+[ext_resource type="Script" uid="uid://cg56anpsj6618" path="res://Scenes/shopkeep.gd" id="1_bmv6i"]
+[ext_resource type="Texture2D" uid="uid://cl1v13qypygx5" path="res://Assets/WorldAssets/shopkeep.png" id="1_hhatn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmv6i"]
+size = Vector2(21, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhurc"]
+atlas = ExtResource("1_hhatn")
+region = Rect2(0, 0, 34, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_242s5"]
+atlas = ExtResource("1_hhatn")
+region = Rect2(34, 0, 34, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1sijj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhurc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_242s5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Shopkeep" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_bmv6i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 10)
+shape = SubResource("RectangleShape2D_bmv6i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1sijj")
+frame_progress = 0.609468

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=3 format=3 uid="uid://dwyupga44by66"]
+
+[ext_resource type="Script" uid="uid://fbj1xoxy1o5o" path="res://Scripts/entity_stats.gd" id="1_ud84d"]
+[ext_resource type="Texture2D" uid="uid://c1cf5pcwxvp4b" path="res://Assets/Enemy/EnemyResources/shroom/shroom.png" id="2_25us8"]
+
+[resource]
+script = ExtResource("1_ud84d")
+Name = "shroom"
+Attack = 2
+Health = 5
+Defense = 3
+Mana = 3
+sprite = ExtResource("2_25us8")
+metadata/_custom_type_script = "uid://fbj1xoxy1o5o"

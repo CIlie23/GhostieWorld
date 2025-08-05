@@ -3,8 +3,9 @@
 [ext_resource type="FontFile" uid="uid://nt8o1lj63fvq" path="res://Assets/Fonts/PublicPixel-rv0pA.ttf" id="1_onc8g"]
 
 [sub_resource type="GDScript" id="GDScript_onc8g"]
-script/source = "extends Control
+script/source = "extends CanvasLayer
 
+#@onready var region_name: Label = $VBoxContainer/RegionName
 @onready var region_name: Label = $VBoxContainer/RegionName
 
 # Called when the node enters the scene tree for the first time.
@@ -19,20 +20,20 @@ func _on_party_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://Scenes/character_selection.tscn\")
 "
 
-[node name="GUI" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="GUI" type="CanvasLayer"]
+layer = 0
 script = SubResource("GDScript_onc8g")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 385
+anchors_preset = -1
+anchor_right = 7.049
+anchor_bottom = 7.0
+offset_right = -6960.45
+offset_bottom = -3888.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(7, 7)
+theme_override_constants/separation = 265
 
 [node name="RegionName" type="Label" parent="VBoxContainer"]
 layout_mode = 2

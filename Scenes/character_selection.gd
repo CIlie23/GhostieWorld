@@ -1,6 +1,8 @@
 extends Control
 
 @export var available_characters: Array[CharacterData]
+@onready var character_name: Label = $VBoxContainer2/CharacterName
+@onready var reset_button: Button = $MarginContainer/VBoxContainer/reset_button
 
 const MAX_PARTY_SIZE = 4
 var selected_party: Array[CharacterData] = []
@@ -40,13 +42,19 @@ func update_party_slots():
 	for i in range(MAX_PARTY_SIZE):
 		if i < selected_party.size():
 			selected_slots[i].texture = selected_party[i].icon
+			character_name.text = selected_party[i].name
 		else:
 			selected_slots[i].texture = null
 
 	confirm_button.disabled = selected_party.size() != MAX_PARTY_SIZE
 
 func _on_confirm_button_pressed() -> void:
-	print("hello")
 	Global.player_party = selected_party.duplicate()
 	#get_tree().change_scene_to_file("res://Scenes/battle_scene.tscn")
 	get_tree().change_scene_to_file("res://Scenes/overworld.tscn")
+
+func _on_reset_button_pressed() -> void:
+	selected_party.clear()
+	character_name.text = ""
+	for slot in selected_slots:
+		slot.texture = null

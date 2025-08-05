@@ -1,42 +1,21 @@
-extends Control
+extends Node2D
 
-var character_data: CharacterData
-var cooldown: float = 0
-var max_cooldown: float = 3.0
-var can_act := false
-var current_hp: int = 100  # Placeholder
+@onready var animation: AnimationPlayer = $AnimationPlayer
+@export var PlayerStats: EntityStats
+@onready var health_bar: ProgressBar = $VBoxContainer/HBoxContainer/HealthBar
+@onready var mana_bar: ProgressBar = $VBoxContainer/HBoxContainer2/ManaBar
 
-signal ready_to_act(character_panel)
-
-@onready var charIcon: TextureRect = $Icon
-@onready var bar: ProgressBar = $ProgressBar
-@onready var hp_label: Label = $HP
-#@onready var charIcon: Sprite2D = $Sprite2D
-
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("charIcon =", charIcon)
+	animation.play("popIn")
 
-func setup(data: CharacterData):
-	character_data = data
-	if !charIcon:
-		push_error("charIcon is null")
-		return
-	charIcon.texture = data.icon
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	health_bar.value = PlayerStats.Health
+	mana_bar.value = PlayerStats.Mana
 
-	cooldown = 0
-	can_act = false
-	current_hp = 100
-	#hp_label.text = "HP: %d" % current_hp
+func play_attack_anim():
+	animation.play("attack")
 
-func _process(delta):
-	if can_act:
-		return
-	cooldown += delta
-	bar.value = cooldown / max_cooldown * 100.0
-	if cooldown >= max_cooldown:
-		can_act = true
-		emit_signal("ready_to_act", self)
-
-func reset_cooldown():
-	cooldown = 0
-	can_act = false
+func play_damaged_anim():
+	animation.play("damaged")

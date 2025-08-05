@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=3 format=3 uid="uid://epif85yguxfn"]
+
+[ext_resource type="Script" uid="uid://fbj1xoxy1o5o" path="res://Scripts/entity_stats.gd" id="1_ck1s8"]
+[ext_resource type="Texture2D" uid="uid://dv47qmb01uea6" path="res://Assets/Enemy/EnemyResources/dummy/enemy.png" id="2_tb7bo"]
+
+[resource]
+script = ExtResource("1_ck1s8")
+Name = "Dummy"
+Attack = 1
+Health = 10
+Defense = 1
+Mana = 1
+sprite = ExtResource("2_tb7bo")
+metadata/_custom_type_script = "uid://fbj1xoxy1o5o"

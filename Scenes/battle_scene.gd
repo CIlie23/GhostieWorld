@@ -1,80 +1,99 @@
-extends Control
+extends Node2D
 
-@onready var player_party_container: VBoxContainer = $PlayerParty
-@onready var enemy_party: VBoxContainer = $EnemyParty
-@onready var action_menu: Control = $ActionMenu
+@onready var enemy: Node2D = $Enemy
+@onready var kullix: Node2D = $CharacterInBattle
+@onready var gui_text: Sprite2D = $GUIText
+@onready var animation: AnimationPlayer = $AnimationPlayer
 
-@onready var attack_buttons = action_menu.get_node("VBoxContainer").get_children()
+@onready var hud: CanvasLayer = $HUD
+#@export var PlayerStats: EntityStats
 
-var selected_character_panel: Control = null
-var character_panels: Array = []
-var current_character_index: int = 0
+#var ChosenMonster = 1
+var CurrentTurn = "Player"
+var isEnemyDying: bool = false
+var isStunned: bool = false
 
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	print("Health: ", kullix.PlayerStats.Health)
+	animation.play("empty")
+	randomize()
+	chosemonster()
+	print("Battle started!")
 
-func _ready():
-	spawn_player_party()
-	action_menu.visible = false
-
-func spawn_player_party():
-	for data in Global.player_party:
-		var panel_scene = preload("res://Scenes/character_in_battle.tscn")
-		var panel = panel_scene.instantiate()
-		player_party_container.add_child(panel) 
-		panel.call_deferred("setup", data)
-		character_panels.append(panel)
-
-
-func _on_character_ready(panel):
-	selected_character_panel = panel
-	action_menu.visible = true
-	show_attack_options(panel.character_data.attacks)
-
-func show_attack_options(attacks):
-	for i in range(attack_buttons.size()):
-		var button = attack_buttons[i]
-
-		# Disconnect all previous connections manually
-		for conn in button.get_signal_connection_list("pressed"):
-			button.disconnect("pressed", conn.callable)
-
-		if i < attacks.size():
-			button.text = attacks[i].name
-			button.visible = true
-			button.connect("pressed", func(): _on_attack_pressed(attacks[i]))
-		else:
-			button.visible = false
-
-
-func _on_attack_pressed(attack):
-	# For now we'll just print the name and reset cooldown
-	print("Used attack: ", attack.name)
-	selected_character_panel.reset_cooldown()
-	action_menu.visible = false
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if not isEnemyDying and enemy.EnemyStats.Health <= 0:
+		isEnemyDying = true
+		switch_overworld()
+		
+func switch_overworld():
+	enemy.play_death_anim()
+	await get_tree().create_timer(1.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/overworld.tscn")
 	
-	current_character_index = (current_character_index + 1) % character_panels.size()
-	try_start_turn()
+func _on_attack_pressed() -> void:
+	if randf() < kullix.PlayerStats.CritChance:
+		print("CRITICAL HUIT!")
+		animation.play("crit")
+		enemy.EnemyStats.take_damage(kullix.PlayerStats.Attack * 2)
+	else:
+		enemy.EnemyStats.take_damage(kullix.PlayerStats.Attack)
+	
+	kullix.play_attack_anim()
+	enemy.play_damage_anim()
+	await get_tree().create_timer(0.5).timeout
+	switch_turn()
 
-#func _on_character_in_battle_ready_to_act(character_panel: Variant) -> void:
-	#selected_character_panel = character_panel
-	#action_menu.visible = true
-	#show_attack_options(character_panel.character_data.attacks)
+func _on_health_pressed() -> void:
+	kullix.PlayerStats.Health += 1
+	print("Healed!: ", kullix.PlayerStats.Health )
+	switch_turn()
 
-func try_start_turn():
-	var tried = 0
-	while tried < character_panels.size():
-		var panel = character_panels[current_character_index]
-		if panel.can_act:
-			selected_character_panel = panel
-			action_menu.visible = true
-			show_attack_options(panel.character_data.attacks)
-			return
-		tried += 1
-		current_character_index = (current_character_index + 1) % character_panels.size()
+func switch_turn():
+	if CurrentTurn == "Monster":
+		animation.play("camera_player")
+		await get_tree().create_timer(0.5).timeout
+		CurrentTurn = "Player"
+		hud.visible = true
+	elif CurrentTurn == "Player":
+		hud.visible = false
+		animation.play("camera_enemy")
+		await get_tree().create_timer(0.5).timeout
+		CurrentTurn = "Monster"
+		
+		MonsterTurn()
 
-	# If none are ready then do nuffin
-	action_menu.visible = false
-	selected_character_panel = null
+func MonsterTurn():
+	if enemy.EnemyStats.Health <= 0:
+		return
+	else:
+		await get_tree().create_timer(0.3).timeout
+		#kullix.PlayerStats.Health -= (enemy.EnemyStats.Attack - kullix.PlayerStats.Defense)
+		kullix.PlayerStats.take_damage(enemy.EnemyStats.Attack)
+		enemy.play_attack_anim()
+		print("Kullix health: ", kullix.PlayerStats.Health)
+	await get_tree().create_timer(0.5).timeout
+	switch_turn()
 
-func _on_timer_2_timeout() -> void:
-	if selected_character_panel == null:
-		try_start_turn()
+
+#------------------------------------------------------------------------
+#
+#------------------------------------------------------------------------
+func chosemonster():
+	var ChosenMonster = [1, 2, 3].pick_random()
+	if ChosenMonster == 1:
+		enemy.EnemyStats = load("res://Assets/Enemy/EnemyResources/bug/bug.tres")
+	elif ChosenMonster == 2:
+		enemy.EnemyStats = load("res://Assets/Enemy/EnemyResources/dummy/dummy.tres")
+	elif ChosenMonster == 3:
+		enemy.EnemyStats = load("res://Assets/Enemy/EnemyResources/shroom/shroom.tres")
+
+	var sprite_node = enemy.get_node("Sprite2D") 
+	sprite_node.texture = enemy.EnemyStats.sprite
+
+		
+func _on_change_pressed() -> void:
+	print("pressed")
+	#ChosenMonster = 2
+	chosemonster()
