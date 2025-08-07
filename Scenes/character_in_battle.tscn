@@ -13,7 +13,9 @@ Attack = 2
 Health = 10
 Defense = 2
 Mana = 10
-CritChance = 0.2
+CritChance = 0.3
+MissChance = 0.1
+StunChance = 0.2
 metadata/_custom_type_script = "uid://fbj1xoxy1o5o"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqhhv"]
@@ -163,6 +165,7 @@ libraries = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

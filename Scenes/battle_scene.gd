@@ -5,38 +5,68 @@ extends Node2D
 @onready var gui_text: Sprite2D = $GUIText
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
-@onready var hud: CanvasLayer = $HUD
-#@export var PlayerStats: EntityStats
+@onready var hud: Control = $HUD/AttackButtons
+@onready var health_bar: ProgressBar = $HUD/Portrait/VBoxContainer/HBoxContainer/HealthBar
+@onready var mana_bar: ProgressBar = $HUD/Portrait/VBoxContainer/HBoxContainer2/ManaBar
+
+@onready var btn_attack: Button = $HUD/AttackButtons/VBoxContainer/Attack
+@onready var btn_health: Button = $HUD/AttackButtons/VBoxContainer/Health
 
 #var ChosenMonster = 1
 var CurrentTurn = "Player"
 var isEnemyDying: bool = false
 var isStunned: bool = false
+var isPlayerStunned:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Health: ", kullix.PlayerStats.Health)
-	animation.play("empty")
+	play_anims()
 	randomize()
 	chosemonster()
-	print("Battle started!")
 
+func play_anims():
+	animation.play("empty")
+	await get_tree().create_timer(1.0).timeout
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print("Current mana: ", kullix.PlayerStats.Mana)
+	health_bar.value = kullix.PlayerStats.Health
+	mana_bar.value = kullix.PlayerStats.Mana
+	update_buttons()
 	if not isEnemyDying and enemy.EnemyStats.Health <= 0:
 		isEnemyDying = true
 		switch_overworld()
-		
+
+func update_buttons():
+	btn_attack.disabled = kullix.PlayerStats.Mana < 2
+	btn_health.disabled = kullix.PlayerStats.Mana < 1
+
 func switch_overworld():
 	enemy.play_death_anim()
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/overworld.tscn")
-	
+
+# ----------------------- BUTTONS ------------------------------------
+
 func _on_attack_pressed() -> void:
+	kullix.PlayerStats.Mana -= 2
+	update_buttons()
+		
+	hud.visible = false
+	animation.play("camera_enemy")
+	await animation.animation_finished
+
 	if randf() < kullix.PlayerStats.CritChance:
-		print("CRITICAL HUIT!")
 		animation.play("crit")
 		enemy.EnemyStats.take_damage(kullix.PlayerStats.Attack * 2)
+	elif randf() < kullix.PlayerStats.MissChance:
+		animation.play("miss")
+	elif randf() < kullix.PlayerStats.StunChance:
+		#print("Enemy Stun")
+		animation.play("stun")
+		enemy.EnemyStats.take_damage(kullix.PlayerStats.Attack + 2)
+		isStunned = true
 	else:
 		enemy.EnemyStats.take_damage(kullix.PlayerStats.Attack)
 	
@@ -46,19 +76,42 @@ func _on_attack_pressed() -> void:
 	switch_turn()
 
 func _on_health_pressed() -> void:
-	kullix.PlayerStats.Health += 1
+	kullix.PlayerStats.Mana -= 1
+	update_buttons()
+		
+	animation.play("HealPlayer")
+	kullix.PlayerStats.Health += 2
 	print("Healed!: ", kullix.PlayerStats.Health )
+	await get_tree().create_timer(0.5).timeout
+	animation.play("camera_enemy")
 	switch_turn()
+		
+#func _on_change_pressed() -> void:
+	#print("pressed")
+	##ChosenMonster = 2
+	#chosemonster()
+
+func _on_defense_pressed() -> void:
+	kullix.PlayerStats.Mana -= 1
+	update_buttons()
+	kullix.PlayerStats.Mana += 3
+	kullix.PlayerStats.Defense += 5
+	animation.play("DefensePlayer")
+	await animation.animation_finished
+	animation.play("camera_enemy")
+	switch_turn()
+	
+# ---------------------------------------------------------------
 
 func switch_turn():
 	if CurrentTurn == "Monster":
-		animation.play("camera_player")
 		await get_tree().create_timer(0.5).timeout
+		kullix.PlayerStats.Mana += 1
+		animation.play("ManaPlayer")
 		CurrentTurn = "Player"
 		hud.visible = true
 	elif CurrentTurn == "Player":
 		hud.visible = false
-		animation.play("camera_enemy")
 		await get_tree().create_timer(0.5).timeout
 		CurrentTurn = "Monster"
 		
@@ -67,18 +120,45 @@ func switch_turn():
 func MonsterTurn():
 	if enemy.EnemyStats.Health <= 0:
 		return
-	else:
-		await get_tree().create_timer(0.3).timeout
-		#kullix.PlayerStats.Health -= (enemy.EnemyStats.Attack - kullix.PlayerStats.Defense)
-		kullix.PlayerStats.take_damage(enemy.EnemyStats.Attack)
-		enemy.play_attack_anim()
-		print("Kullix health: ", kullix.PlayerStats.Health)
-	await get_tree().create_timer(0.5).timeout
-	switch_turn()
+	if isStunned == true:
+		animation.play("StunEnemy")
+		switch_turn()
+		animation.play("camera_player")
+		isStunned = false
+		return
 
-
-#------------------------------------------------------------------------
-#
+	var monsterActions: Array = ["attack", "heal", "defend"]
+	var possibleActions = monsterActions.pick_random()
+	
+	#if enemy.EnemyStats.Health <= enemy.EnemyStats.MaxHealth * 0.3:
+		#possibleActions = "heal" if randf() < 0.5 else possibleActions
+		
+	match possibleActions:
+		"attack":
+			print("attack")
+			animation.play("camera_player")
+			await get_tree().create_timer(0.3).timeout
+			kullix.PlayerStats.take_damage(enemy.EnemyStats.Attack)
+			enemy.play_attack_anim()
+			await get_tree().create_timer(0.5).timeout
+			switch_turn()
+		"heal":
+			print("heal")
+			enemy.EnemyStats.Health += 1
+			animation.play("HealEnemy")
+			await animation.animation_finished
+			animation.play("camera_player")
+			await get_tree().create_timer(0.5).timeout
+			switch_turn()
+		"defend":
+			print("defend")
+			enemy.EnemyStats.Defense += 1
+			animation.play("DefenseEnemy")
+			await animation.animation_finished
+			animation.play("camera_player")
+			await get_tree().create_timer(0.5).timeout
+			switch_turn()
+			
 #------------------------------------------------------------------------
 func chosemonster():
 	var ChosenMonster = [1, 2, 3].pick_random()
@@ -91,9 +171,3 @@ func chosemonster():
 
 	var sprite_node = enemy.get_node("Sprite2D") 
 	sprite_node.texture = enemy.EnemyStats.sprite
-
-		
-func _on_change_pressed() -> void:
-	print("pressed")
-	#ChosenMonster = 2
-	chosemonster()

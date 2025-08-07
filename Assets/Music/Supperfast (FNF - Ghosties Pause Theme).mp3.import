@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xog0gsifghsa"
+path="res://.godot/imported/Supperfast (FNF - Ghosties Pause Theme).mp3-ed6ab6955c7d0a2931fe355d92dac601.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Supperfast (FNF - Ghosties Pause Theme).mp3"
+dest_files=["res://.godot/imported/Supperfast (FNF - Ghosties Pause Theme).mp3-ed6ab6955c7d0a2931fe355d92dac601.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,7 +1,6 @@
-res://Scenes/character_in_battle.tscn
+res://Scenes/overworld.tscn
 res://Scenes/overworld.gdshader
 res://Scenes/shaders/enemyDeath.gdshader
-res://Scenes/overworld.tscn
 res://Scenes/battle_scene.tscn
+res://Scenes/character_in_battle.tscn
 res://Scenes/enemy.tscn
-res://Scenes/battle_scene.gd
