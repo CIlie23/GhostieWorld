@@ -1,17 +1,17 @@
-[gd_scene load_steps=33 format=3 uid="uid://veeajhcie23v"]
+[gd_scene load_steps=33 format=3 uid="uid://bn5724h5ukgqg"]
 
-[ext_resource type="Script" uid="uid://6wakr6jwcaic" path="res://Scenes/battle_scene.gd" id="1_hdvqd"]
-[ext_resource type="PackedScene" uid="uid://bglb7qsbr31ye" path="res://Scenes/character_in_battle.tscn" id="2_anwxn"]
-[ext_resource type="PackedScene" uid="uid://cbvjlj84j6h51" path="res://Scenes/enemy.tscn" id="3_e5vbs"]
-[ext_resource type="Texture2D" uid="uid://m3q0cxv00cix" path="res://Assets/GUI/miss.png" id="4_3gnqe"]
-[ext_resource type="FontFile" uid="uid://nt8o1lj63fvq" path="res://Assets/Fonts/PublicPixel-rv0pA.ttf" id="4_e5vbs"]
-[ext_resource type="Texture2D" uid="uid://bpt3aqi1asqs5" path="res://Assets/GUI/stun.png" id="5_gt16y"]
-[ext_resource type="Texture2D" uid="uid://cbk0ijwb5c7oi" path="res://Assets/GUI/regen mana.png" id="5_wb0gu"]
-[ext_resource type="Texture2D" uid="uid://mhuu2lc2eako" path="res://Assets/GUI/crit.png" id="6_20f6w"]
-[ext_resource type="Texture2D" uid="uid://j0u20hbi5hf8" path="res://Assets/GUI/defense.png" id="8_ms847"]
-[ext_resource type="Texture2D" uid="uid://dxbmiolmcwv7x" path="res://Assets/Characters/Kullix/kullixPortrait.png" id="8_w4764"]
-[ext_resource type="Texture2D" uid="uid://d4cs5f2lhcmvy" path="res://Assets/GUI/stars.png" id="9_ed262"]
-[ext_resource type="Texture2D" uid="uid://ct64cwr1bmgax" path="res://Assets/GUI/heal.png" id="9_f4ggb"]
+[ext_resource type="Script" uid="uid://crmsmy2if3mdv" path="res://Scenes/boss_battle_scene.gd" id="1_0yq6d"]
+[ext_resource type="PackedScene" uid="uid://bglb7qsbr31ye" path="res://Scenes/character_in_battle.tscn" id="2_1h4lg"]
+[ext_resource type="Texture2D" uid="uid://j0u20hbi5hf8" path="res://Assets/GUI/defense.png" id="4_6g31o"]
+[ext_resource type="Texture2D" uid="uid://cbk0ijwb5c7oi" path="res://Assets/GUI/regen mana.png" id="5_esej7"]
+[ext_resource type="Texture2D" uid="uid://ct64cwr1bmgax" path="res://Assets/GUI/heal.png" id="6_6xq1i"]
+[ext_resource type="Texture2D" uid="uid://m3q0cxv00cix" path="res://Assets/GUI/miss.png" id="7_fu06w"]
+[ext_resource type="Texture2D" uid="uid://d4cs5f2lhcmvy" path="res://Assets/GUI/stars.png" id="8_pxyw0"]
+[ext_resource type="Texture2D" uid="uid://mhuu2lc2eako" path="res://Assets/GUI/crit.png" id="9_4g7d1"]
+[ext_resource type="Texture2D" uid="uid://bpt3aqi1asqs5" path="res://Assets/GUI/stun.png" id="10_w111v"]
+[ext_resource type="FontFile" uid="uid://nt8o1lj63fvq" path="res://Assets/Fonts/PublicPixel-rv0pA.ttf" id="11_3qiyl"]
+[ext_resource type="Texture2D" uid="uid://dxbmiolmcwv7x" path="res://Assets/Characters/Kullix/kullixPortrait.png" id="12_c7nd2"]
+[ext_resource type="PackedScene" uid="uid://cyl3emy1c653u" path="res://Assets/Enemy/Bosses/test_boxx.tscn" id="13_1h4lg"]
 
 [sub_resource type="Animation" id="Animation_vuvll"]
 resource_name = "DefenseEnemy"
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_ms847")]
+"values": [ExtResource("4_6g31o")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -89,7 +89,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.601246),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("8_ms847"), ExtResource("5_wb0gu")]
+"values": [ExtResource("4_6g31o"), ExtResource("5_esej7")]
 }
 
 [sub_resource type="Animation" id="Animation_tfvgr"]
@@ -105,7 +105,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_f4ggb")]
+"values": [ExtResource("6_6xq1i")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -145,7 +145,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_f4ggb")]
+"values": [ExtResource("6_6xq1i")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -185,7 +185,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_wb0gu")]
+"values": [ExtResource("5_esej7")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -224,7 +224,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_3gnqe")]
+"values": [ExtResource("7_fu06w")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -320,7 +320,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_3gnqe")]
+"values": [ExtResource("7_fu06w")]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -332,7 +332,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_ed262")]
+"values": [ExtResource("8_pxyw0")]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -368,7 +368,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_f4ggb")]
+"values": [ExtResource("6_6xq1i")]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -440,7 +440,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_20f6w")]
+"values": [ExtResource("9_4g7d1")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -528,7 +528,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_20f6w")]
+"values": [ExtResource("9_4g7d1")]
 }
 
 [sub_resource type="Animation" id="Animation_ed262"]
@@ -596,7 +596,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_3gnqe")]
+"values": [ExtResource("7_fu06w")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -684,7 +684,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_3gnqe")]
+"values": [ExtResource("7_fu06w")]
 }
 
 [sub_resource type="Animation" id="Animation_3gnqe"]
@@ -700,7 +700,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_gt16y")]
+"values": [ExtResource("10_w111v")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -748,7 +748,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.0514876),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_ed262")]
+"values": [ExtResource("8_pxyw0")]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -824,7 +824,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_gt16y")]
+"values": [ExtResource("10_w111v")]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -836,7 +836,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_ed262")]
+"values": [ExtResource("8_pxyw0")]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -894,18 +894,18 @@ bg_color = Color(0.141176, 0.141176, 0.141176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4ggb"]
 bg_color = Color(1.92523e-07, 0.656371, 0.997315, 1)
 
-[node name="BattleScene" type="Node2D"]
-script = ExtResource("1_hdvqd")
+[node name="BossBattleScene" type="Node2D"]
+script = ExtResource("1_0yq6d")
 
 [node name="BG" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CharacterInBattle" parent="." instance=ExtResource("2_anwxn")]
+[node name="CharacterInBattle" parent="." instance=ExtResource("2_1h4lg")]
 position = Vector2(894, 288)
 
-[node name="Enemy" parent="." instance=ExtResource("3_e5vbs")]
-position = Vector2(133, 363)
+[node name="TestBoxx" parent="." instance=ExtResource("13_1h4lg")]
+position = Vector2(188, 439)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(604, 335)
@@ -921,12 +921,12 @@ libraries = {
 visible = false
 position = Vector2(103, 348)
 scale = Vector2(2.28125, 2.28125)
-texture = ExtResource("4_3gnqe")
+texture = ExtResource("7_fu06w")
 
 [node name="GUITextPlayer" type="Sprite2D" parent="."]
 position = Vector2(967, 348)
 scale = Vector2(5, 5)
-texture = ExtResource("4_3gnqe")
+texture = ExtResource("7_fu06w")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -947,14 +947,14 @@ offset_bottom = 446.0
 layout_mode = 2
 tooltip_text = "Attack an enemy for 1 damage
 Consumes 2 MP !"
-theme_override_fonts/font = ExtResource("4_e5vbs")
+theme_override_fonts/font = ExtResource("11_3qiyl")
 text = "Attack"
 
 [node name="Health" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Gives you +2 Health!
 Consumes 1 MP!"
-theme_override_fonts/font = ExtResource("4_e5vbs")
+theme_override_fonts/font = ExtResource("11_3qiyl")
 text = "Heal"
 
 [node name="Defense" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
@@ -962,7 +962,7 @@ layout_mode = 2
 tooltip_text = "Raises your defense by 5!
 Consumes 1 MP!
 Increases MP by 3!"
-theme_override_fonts/font = ExtResource("4_e5vbs")
+theme_override_fonts/font = ExtResource("11_3qiyl")
 text = "Defense"
 
 [node name="Portrait" type="Control" parent="HUD"]
@@ -974,7 +974,7 @@ offset_bottom = 40.0
 [node name="Sprite2D" type="Sprite2D" parent="HUD/Portrait"]
 position = Vector2(1102.19, 52.1875)
 scale = Vector2(5.64844, 5.64844)
-texture = ExtResource("8_w4764")
+texture = ExtResource("12_c7nd2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/Portrait"]
 layout_mode = 1
@@ -995,7 +995,7 @@ layout_mode = 2
 
 [node name="HP" type="Label" parent="HUD/Portrait/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_e5vbs")
+theme_override_fonts/font = ExtResource("11_3qiyl")
 text = "HP"
 
 [node name="HealthBar" type="ProgressBar" parent="HUD/Portrait/VBoxContainer/HBoxContainer"]
@@ -1013,7 +1013,7 @@ layout_mode = 2
 
 [node name="MP" type="Label" parent="HUD/Portrait/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_e5vbs")
+theme_override_fonts/font = ExtResource("11_3qiyl")
 text = "MP"
 
 [node name="ManaBar" type="ProgressBar" parent="HUD/Portrait/VBoxContainer/HBoxContainer2"]
@@ -1049,7 +1049,7 @@ offset_top = 24.0
 offset_right = 64.0
 offset_bottom = 47.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("4_e5vbs")
+theme_override_fonts/font = ExtResource("11_3qiyl")
 text = "VICTORY!"
 horizontal_alignment = 1
 
@@ -1059,18 +1059,18 @@ offset_left = 64.0
 offset_top = 112.0
 offset_right = 208.0
 offset_bottom = 135.0
-theme_override_fonts/font = ExtResource("4_e5vbs")
+theme_override_fonts/font = ExtResource("11_3qiyl")
 text = "CASH: 100"
 
 [node name="EffectsEnemy" type="Sprite2D" parent="."]
 position = Vector2(188, 356)
 scale = Vector2(3.95313, 3.95313)
-texture = ExtResource("9_ed262")
+texture = ExtResource("8_pxyw0")
 
 [node name="EffectsPlayer" type="Sprite2D" parent="."]
 position = Vector2(964, 396)
 scale = Vector2(3.95313, 3.95313)
-texture = ExtResource("9_f4ggb")
+texture = ExtResource("6_6xq1i")
 
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Health" to="." method="_on_health_pressed"]

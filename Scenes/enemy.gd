@@ -6,7 +6,6 @@ extends Node2D
 
 @export var EnemyStats: EntityStats
 
-
 func _ready() -> void:
 	progress_bar.value = EnemyStats.Health
 	animation.play("spawn")

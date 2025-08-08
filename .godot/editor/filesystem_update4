@@ -1,6 +1,15 @@
-res://Scenes/overworld.tscn
+res://Scenes/character_in_battle.tscn
 res://Scenes/overworld.gdshader
 res://Scenes/shaders/enemyDeath.gdshader
+res://Scenes/overworld.tscn
 res://Scenes/battle_scene.tscn
-res://Scenes/character_in_battle.tscn
 res://Scenes/enemy.tscn
+res://Scenes/battle_scene.gd
+res://Assets/Enemy/EnemyResources/bug/bug.tres
+res://Assets/Enemy/EnemyResources/dummy/dummy.tres
+res://Assets/Enemy/EnemyResources/shroom/shroom.tres
+res://Assets/Enemy/Bosses/test_boxx.tscn
+res://Assets/Enemy/Bosses/test_boxx.gd
+res://Scenes/enemy.gd
+res://Scenes/boss_battle_scene.tscn
+res://Scenes/boss_battle_scene.gd

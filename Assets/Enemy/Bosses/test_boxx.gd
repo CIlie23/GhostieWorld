@@ -1,0 +1,26 @@
+extends Node2D
+
+@onready var animation: AnimationPlayer = $Animation
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	print("This is a test boss")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func chooseOption():
+	var optionArray:Array = ["option1", "option2", "option3"]
+	var possibleActions = optionArray.pick_random()
+	
+	match possibleActions:
+		"option1":
+			print("Attack one!")
+			animation.play("attackOne")
+		"option2":
+			print("Attack two!")
+			animation.play("attackTwo")
+		"option3":
+			print("Attack tree!")
+			animation.play("attackThree")
