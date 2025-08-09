@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cv51mgkew17ii"
-path="res://.godot/imported/maketater_3_png.png-ba27821afc542e4db4d82d933805e142.ctex"
+path="res://.godot/imported/maketater_3_png.png-56b36f3e7ec97fa791ecce0a3a083d09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemy/Bosses/maketater_3_png.png"
-dest_files=["res://.godot/imported/maketater_3_png.png-ba27821afc542e4db4d82d933805e142.ctex"]
+source_file="res://Assets/Enemy/Bosses/BigJeff/maketater_3_png.png"
+dest_files=["res://.godot/imported/maketater_3_png.png-56b36f3e7ec97fa791ecce0a3a083d09.ctex"]
 
 [params]
 

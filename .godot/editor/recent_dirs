@@ -1,10 +1,13 @@
+res://Assets/Enemy/Bosses/MaskTutorial/
+res://Assets/GUI
+res://Scripts
+res://Assets/Enemy/Bosses/
 res://Scenes
 res://Assets/WorldAssets
 res://Assets/Enemy/EnemyResources/shroom/
 res://Scenes/shaders
 res://Assets/Enemy/EnemyResources/bug/
 res://Assets/Enemy/EnemyResources
-res://Scripts
 res://Assets/Characters/Mask
 res://Assets/Characters/Trishu/
 res://Assets/Characters/Jahtee/
@@ -13,6 +16,5 @@ res://Assets/Characters/Vortex/
 res://Assets/Characters/Kullix/
 res://Assets/Characters/Mask/
 res://
-res://Assets/GUI
 res://Assets/WorldAssets/NPCs
 res://Assets/Player

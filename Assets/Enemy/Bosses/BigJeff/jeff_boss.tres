@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=3 format=3 uid="uid://0jutvwqltn1x"]
+
+[ext_resource type="Script" uid="uid://fbj1xoxy1o5o" path="res://Scripts/entity_stats.gd" id="1_6l34x"]
+[ext_resource type="Texture2D" uid="uid://cv51mgkew17ii" path="res://Assets/Enemy/Bosses/BigJeff/maketater_3_png.png" id="2_abequ"]
+
+[resource]
+script = ExtResource("1_6l34x")
+Name = "Testificate"
+Attack = 1
+Health = 10
+Defense = 1
+Mana = 1
+CritChance = 0.0
+MissChance = 0.0
+StunChance = 0.0
+sprite = ExtResource("2_abequ")
+metadata/_custom_type_script = "uid://fbj1xoxy1o5o"

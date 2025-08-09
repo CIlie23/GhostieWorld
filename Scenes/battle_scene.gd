@@ -77,6 +77,7 @@ func _on_attack_pressed() -> void:
 	
 	kullix.play_attack_anim()
 	enemy.play_damage_anim()
+	print("enemy died")
 	await get_tree().create_timer(0.5).timeout
 	switch_turn()
 
@@ -134,9 +135,6 @@ func MonsterTurn():
 	if enemy.EnemyStats.Health <= 0:
 		return
 	if isStunned == true:
-		#animation.play("StunEnemy")
-		#await animation.animation_finished
-		#print("Enemy is stunned")
 		switch_turn()
 
 		animation.play("camera_player")

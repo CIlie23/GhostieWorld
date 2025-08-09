@@ -1,3 +1,4 @@
+BossDialogue
 EntityStats
 CharacterData
 Resource

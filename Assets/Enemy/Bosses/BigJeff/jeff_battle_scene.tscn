@@ -1,17 +1,33 @@
-[gd_scene load_steps=33 format=3 uid="uid://bn5724h5ukgqg"]
+[gd_scene load_steps=47 format=3 uid="uid://c4ffbrtw1t1pu"]
 
-[ext_resource type="Script" uid="uid://crmsmy2if3mdv" path="res://Scenes/boss_battle_scene.gd" id="1_0yq6d"]
-[ext_resource type="PackedScene" uid="uid://bglb7qsbr31ye" path="res://Scenes/character_in_battle.tscn" id="2_1h4lg"]
-[ext_resource type="Texture2D" uid="uid://j0u20hbi5hf8" path="res://Assets/GUI/defense.png" id="4_6g31o"]
-[ext_resource type="Texture2D" uid="uid://cbk0ijwb5c7oi" path="res://Assets/GUI/regen mana.png" id="5_esej7"]
-[ext_resource type="Texture2D" uid="uid://ct64cwr1bmgax" path="res://Assets/GUI/heal.png" id="6_6xq1i"]
-[ext_resource type="Texture2D" uid="uid://m3q0cxv00cix" path="res://Assets/GUI/miss.png" id="7_fu06w"]
-[ext_resource type="Texture2D" uid="uid://d4cs5f2lhcmvy" path="res://Assets/GUI/stars.png" id="8_pxyw0"]
-[ext_resource type="Texture2D" uid="uid://mhuu2lc2eako" path="res://Assets/GUI/crit.png" id="9_4g7d1"]
-[ext_resource type="Texture2D" uid="uid://bpt3aqi1asqs5" path="res://Assets/GUI/stun.png" id="10_w111v"]
-[ext_resource type="FontFile" uid="uid://nt8o1lj63fvq" path="res://Assets/Fonts/PublicPixel-rv0pA.ttf" id="11_3qiyl"]
-[ext_resource type="Texture2D" uid="uid://dxbmiolmcwv7x" path="res://Assets/Characters/Kullix/kullixPortrait.png" id="12_c7nd2"]
-[ext_resource type="PackedScene" uid="uid://cyl3emy1c653u" path="res://Assets/Enemy/Bosses/test_boxx.tscn" id="13_1h4lg"]
+[ext_resource type="Script" uid="uid://dno8y708n55w1" path="res://Assets/Enemy/Bosses/BigJeff/jeff_battle_scene.gd" id="1_sobkl"]
+[ext_resource type="Script" uid="uid://c0dyyyjbq0qdd" path="res://BossDialogues.gd" id="2_mw7nj"]
+[ext_resource type="PackedScene" uid="uid://bglb7qsbr31ye" path="res://Scenes/character_in_battle.tscn" id="4_45umo"]
+[ext_resource type="PackedScene" uid="uid://cyl3emy1c653u" path="res://Assets/Enemy/Bosses/boss_base.tscn" id="5_37w1v"]
+[ext_resource type="Texture2D" uid="uid://j0u20hbi5hf8" path="res://Assets/GUI/defense.png" id="6_vav80"]
+[ext_resource type="Texture2D" uid="uid://cbk0ijwb5c7oi" path="res://Assets/GUI/regen mana.png" id="7_ke8h5"]
+[ext_resource type="Texture2D" uid="uid://ct64cwr1bmgax" path="res://Assets/GUI/heal.png" id="8_f5pxn"]
+[ext_resource type="Texture2D" uid="uid://m3q0cxv00cix" path="res://Assets/GUI/miss.png" id="9_e62c8"]
+[ext_resource type="Texture2D" uid="uid://d4cs5f2lhcmvy" path="res://Assets/GUI/stars.png" id="10_80c6n"]
+[ext_resource type="Texture2D" uid="uid://mhuu2lc2eako" path="res://Assets/GUI/crit.png" id="11_jm165"]
+[ext_resource type="Texture2D" uid="uid://bpt3aqi1asqs5" path="res://Assets/GUI/stun.png" id="12_w02uu"]
+[ext_resource type="FontFile" uid="uid://nt8o1lj63fvq" path="res://Assets/Fonts/PublicPixel-rv0pA.ttf" id="13_vb7aw"]
+[ext_resource type="Texture2D" uid="uid://dxbmiolmcwv7x" path="res://Assets/Characters/Kullix/kullixPortrait.png" id="14_0lbm7"]
+[ext_resource type="PackedScene" uid="uid://d2rufk02jh22d" path="res://Assets/GUI/dialogue_box.tscn" id="15_f5iiq"]
+[ext_resource type="AudioStream" uid="uid://cjr0oq4vqy3pu" path="res://Assets/Sounds/YAYY.mp3" id="16_anf4r"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mw7nj"]
+
+[sub_resource type="Resource" id="Resource_q6lat"]
+script = ExtResource("2_mw7nj")
+boss_name = "Jeff"
+boss_icon = SubResource("CompressedTexture2D_mw7nj")
+intro_lines = Array[String](["Bahahah! No one gets past Big Jeff! The cake is all MINE!"])
+attack_lines = Array[String](["Hahaha! The only way you're getting out of here is in an [color=aqua]ICECUBE![/color]"])
+hurt_lines = Array[String]([])
+spared_lines = Array[String](["You're... you're actually sparing me? Woah.. that's so.. cool man", "Thank you so much! I appreciate your forgiveness"])
+defeat_lines = Array[String]([])
+metadata/_custom_type_script = "uid://c0dyyyjbq0qdd"
 
 [sub_resource type="Animation" id="Animation_vuvll"]
 resource_name = "DefenseEnemy"
@@ -26,7 +42,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_6g31o")]
+"values": [ExtResource("6_vav80")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -89,7 +105,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.601246),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("4_6g31o"), ExtResource("5_esej7")]
+"values": [ExtResource("6_vav80"), ExtResource("7_ke8h5")]
 }
 
 [sub_resource type="Animation" id="Animation_tfvgr"]
@@ -105,7 +121,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_6xq1i")]
+"values": [ExtResource("8_f5pxn")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -145,7 +161,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_6xq1i")]
+"values": [ExtResource("8_f5pxn")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -185,7 +201,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_esej7")]
+"values": [ExtResource("7_ke8h5")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -224,7 +240,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_fu06w")]
+"values": [ExtResource("9_e62c8")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -320,7 +336,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_fu06w")]
+"values": [ExtResource("9_e62c8")]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -332,7 +348,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_pxyw0")]
+"values": [ExtResource("10_80c6n")]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -368,7 +384,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_6xq1i")]
+"values": [ExtResource("8_f5pxn")]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -440,7 +456,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_4g7d1")]
+"values": [ExtResource("11_jm165")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -528,7 +544,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_4g7d1")]
+"values": [ExtResource("11_jm165")]
 }
 
 [sub_resource type="Animation" id="Animation_ed262"]
@@ -596,7 +612,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_fu06w")]
+"values": [ExtResource("9_e62c8")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -684,7 +700,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_fu06w")]
+"values": [ExtResource("9_e62c8")]
 }
 
 [sub_resource type="Animation" id="Animation_3gnqe"]
@@ -700,7 +716,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_w111v")]
+"values": [ExtResource("12_w02uu")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -748,7 +764,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.0514876),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_pxyw0")]
+"values": [ExtResource("10_80c6n")]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -824,7 +840,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_w111v")]
+"values": [ExtResource("12_w02uu")]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -836,7 +852,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_pxyw0")]
+"values": [ExtResource("10_80c6n")]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -894,23 +910,159 @@ bg_color = Color(0.141176, 0.141176, 0.141176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4ggb"]
 bg_color = Color(1.92523e-07, 0.656371, 0.997315, 1)
 
-[node name="BossBattleScene" type="Node2D"]
-script = ExtResource("1_0yq6d")
+[sub_resource type="Theme" id="Theme_esej7"]
+default_font = ExtResource("13_vb7aw")
+
+[sub_resource type="Theme" id="Theme_6g31o"]
+default_font = ExtResource("13_vb7aw")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m545y"]
+bg_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6g31o"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m545y"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_max = 5.0
+
+[sub_resource type="Animation" id="Animation_6xq1i"]
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/Victory:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-312, 173)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/Victory/HBoxContainer/RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_esej7"]
+resource_name = "Yippe"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_anf4r")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_6g31o"]
+resource_name = "victoryScreen"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/Victory:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-312, 173), Vector2(328, 173)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/Victory/HBoxContainer/RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.866667),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fu06w"]
+_data = {
+&"RESET": SubResource("Animation_6xq1i"),
+&"Yippe": SubResource("Animation_esej7"),
+&"victoryScreen": SubResource("Animation_6g31o")
+}
+
+[node name="JeffBattle" type="Node2D"]
+script = ExtResource("1_sobkl")
+boss_dialogue = SubResource("Resource_q6lat")
 
 [node name="BG" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = -8.0
+offset_right = 1157.0
+offset_bottom = 643.0
+size_flags_horizontal = 4
 
-[node name="CharacterInBattle" parent="." instance=ExtResource("2_1h4lg")]
+[node name="CharacterInBattle" parent="." instance=ExtResource("4_45umo")]
 position = Vector2(894, 288)
 
-[node name="TestBoxx" parent="." instance=ExtResource("13_1h4lg")]
-position = Vector2(188, 439)
+[node name="TestBoxx" parent="." instance=ExtResource("5_37w1v")]
+position = Vector2(201, 424)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(604, 335)
 scale = Vector2(3.50501, 3.50501)
-zoom = Vector2(1.2, 1.2)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -921,12 +1073,12 @@ libraries = {
 visible = false
 position = Vector2(103, 348)
 scale = Vector2(2.28125, 2.28125)
-texture = ExtResource("7_fu06w")
+texture = ExtResource("9_e62c8")
 
 [node name="GUITextPlayer" type="Sprite2D" parent="."]
 position = Vector2(967, 348)
 scale = Vector2(5, 5)
-texture = ExtResource("7_fu06w")
+texture = ExtResource("9_e62c8")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -944,26 +1096,46 @@ offset_right = 915.0
 offset_bottom = 446.0
 
 [node name="Attack" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
+visible = false
 layout_mode = 2
 tooltip_text = "Attack an enemy for 1 damage
 Consumes 2 MP !"
-theme_override_fonts/font = ExtResource("11_3qiyl")
+theme_override_fonts/font = ExtResource("13_vb7aw")
+text = "Attack"
+
+[node name="Kill" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
+visible = false
+layout_mode = 2
+tooltip_text = "Attack an enemy for 1 damage
+Consumes 2 MP !"
+theme_override_fonts/font = ExtResource("13_vb7aw")
 text = "Attack"
 
 [node name="Health" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
+visible = false
 layout_mode = 2
 tooltip_text = "Gives you +2 Health!
 Consumes 1 MP!"
-theme_override_fonts/font = ExtResource("11_3qiyl")
+theme_override_fonts/font = ExtResource("13_vb7aw")
 text = "Heal"
 
 [node name="Defense" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
+visible = false
 layout_mode = 2
 tooltip_text = "Raises your defense by 5!
 Consumes 1 MP!
 Increases MP by 3!"
-theme_override_fonts/font = ExtResource("11_3qiyl")
+theme_override_fonts/font = ExtResource("13_vb7aw")
 text = "Defense"
+
+[node name="Spare" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
+visible = false
+layout_mode = 2
+tooltip_text = "Raises your defense by 5!
+Consumes 1 MP!
+Increases MP by 3!"
+theme_override_fonts/font = ExtResource("13_vb7aw")
+text = "Spare"
 
 [node name="Portrait" type="Control" parent="HUD"]
 layout_mode = 3
@@ -974,7 +1146,7 @@ offset_bottom = 40.0
 [node name="Sprite2D" type="Sprite2D" parent="HUD/Portrait"]
 position = Vector2(1102.19, 52.1875)
 scale = Vector2(5.64844, 5.64844)
-texture = ExtResource("12_c7nd2")
+texture = ExtResource("14_0lbm7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/Portrait"]
 layout_mode = 1
@@ -995,7 +1167,7 @@ layout_mode = 2
 
 [node name="HP" type="Label" parent="HUD/Portrait/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("11_3qiyl")
+theme_override_fonts/font = ExtResource("13_vb7aw")
 text = "HP"
 
 [node name="HealthBar" type="ProgressBar" parent="HUD/Portrait/VBoxContainer/HBoxContainer"]
@@ -1013,7 +1185,7 @@ layout_mode = 2
 
 [node name="MP" type="Label" parent="HUD/Portrait/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("11_3qiyl")
+theme_override_fonts/font = ExtResource("13_vb7aw")
 text = "MP"
 
 [node name="ManaBar" type="ProgressBar" parent="HUD/Portrait/VBoxContainer/HBoxContainer2"]
@@ -1025,21 +1197,23 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_f4ggb")
 max_value = 10.0
 show_percentage = false
 
-[node name="Control" type="Control" parent="HUD"]
-visible = false
+[node name="Victory" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 216.0
+offset_left = -312.0
 offset_top = 173.0
-offset_right = 488.0
+offset_right = -40.0
 offset_bottom = 471.0
 
-[node name="Panel" type="Panel" parent="HUD/Control"]
-layout_mode = 0
-offset_right = 272.0
-offset_bottom = 297.0
+[node name="Panel" type="Panel" parent="HUD/Victory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="HUD/Control"]
+[node name="Label" type="RichTextLabel" parent="HUD/Victory"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1049,29 +1223,84 @@ offset_top = 24.0
 offset_right = 64.0
 offset_bottom = 47.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("11_3qiyl")
-text = "VICTORY!"
+theme = SubResource("Theme_esej7")
+bbcode_enabled = true
+text = "[rainbow]VICTORY![/rainbow]"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="HUD/Control"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 112.0
-offset_right = 208.0
-offset_bottom = 135.0
-theme_override_fonts/font = ExtResource("11_3qiyl")
-text = "CASH: 100"
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Victory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -20.0
+offset_right = 64.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="HUD/Victory/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("13_vb7aw")
+text = "CASH:"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Victory/HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_6g31o")
+bbcode_enabled = true
+text = "[rainbow]10[/rainbow]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+offset_left = 66.0
+offset_top = 559.0
+offset_right = 534.0
+offset_bottom = 586.0
+theme_override_styles/background = SubResource("StyleBoxFlat_m545y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6g31o")
+max_value = 10.0
+show_percentage = false
+
+[node name="DialogueBox" parent="HUD" instance=ExtResource("15_f5iiq")]
+visible = false
 
 [node name="EffectsEnemy" type="Sprite2D" parent="."]
 position = Vector2(188, 356)
 scale = Vector2(3.95313, 3.95313)
-texture = ExtResource("8_pxyw0")
+texture = ExtResource("10_80c6n")
 
 [node name="EffectsPlayer" type="Sprite2D" parent="."]
 position = Vector2(964, 396)
 scale = Vector2(3.95313, 3.95313)
-texture = ExtResource("6_6xq1i")
+texture = ExtResource("8_f5pxn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(596, -46)
+scale = Vector2(5, 3)
+emitting = false
+amount = 200
+lifetime = 5.0
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_m545y")
+
+[node name="Spare" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fu06w")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_anf4r")
 
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Kill" to="." method="_on_kill_pressed"]
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Defense" to="." method="_on_defense_pressed"]
+[connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Spare" to="." method="_on_spare_pressed"]
