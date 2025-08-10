@@ -25,6 +25,9 @@ extends Node2D
 
 @onready var victoryScreen: Control = $HUD/Victory
 @onready var cash_label: RichTextLabel = $HUD/Victory/HBoxContainer/RichTextLabel
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer
+
+@onready var shader: ColorRect = $Shader/shader
 
 var CurrentTurn = "Player"
 var isEnemyDying: bool = false
@@ -60,8 +63,9 @@ func play_spare():
 	get_tree().change_scene_to_file("res://Scenes/overworld.tscn")
 	
 func play_kill():
+	audio.stop()
 	otherAnimations.play("victoryScreen")
-	Global.cash += 10
+	Global.cash += 100
 	cash_label.text = "[rainbow]+" + str(10) + "[/rainbow]"
 
 func awesome_sequence(chosenAction): #for fighting
@@ -92,6 +96,9 @@ func awesome_sequence(chosenAction): #for fighting
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	otherAnimations.play("fadeOut")
+	#audio.play()
+	shader.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	dialogue_box.visible = true
 	enemy.BossStats = load("res://Assets/Enemy/Bosses/MaskTutorial/mask_boss.tres")
 		
@@ -104,6 +111,7 @@ func _ready() -> void:
 	randomize()
 
 func play_anims():
+	
 	animation.play("empty")
 	await get_tree().create_timer(1.0).timeout
 	
@@ -127,7 +135,7 @@ func switch_overworld():
 	await get_tree().create_timer(1.0).timeout
 	play_kill()
 	print ("Global.cash: " + str(Global.cash))
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(5.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/overworld.tscn")
 
 # ----------------------- BUTTONS ------------------------------------
@@ -187,6 +195,7 @@ func _on_spare_pressed() -> void:
 	awesome_sequence(ActionSequences[3])
 
 func _on_kill_pressed() -> void:
+	Global.isMaskAlive = false
 	awesome_sequence(ActionSequences[4])
 # ---------------------------------------------------------------
 

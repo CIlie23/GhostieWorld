@@ -1,0 +1,125 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1e0j6vjs14tv"]
+
+[ext_resource type="FontFile" uid="uid://nt8o1lj63fvq" path="res://Assets/Fonts/PublicPixel-rv0pA.ttf" id="1_rmgum"]
+[ext_resource type="Script" uid="uid://ci722srmdv1db" path="res://Scenes/you_died.gd" id="1_u18a2"]
+[ext_resource type="AudioStream" uid="uid://eblvih362jw8" path="res://Assets/Sounds/death.wav" id="3_n2g3v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmgum"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_u18a2"]
+default_font = ExtResource("1_rmgum")
+
+[sub_resource type="Animation" id="Animation_wrqrx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u18a2"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2g3v"]
+_data = {
+&"RESET": SubResource("Animation_wrqrx"),
+&"fade_out": SubResource("Animation_u18a2")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2g3v"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_u18a2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 467.0
+offset_bottom = 277.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rmgum")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -72.0
+offset_right = 52.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_rmgum")
+text = "Retry?"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.5
+offset_top = -13.5
+offset_right = 178.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_u18a2")
+bbcode_enabled = true
+text = "[rainbow]GAME OVER[/rainbow]"
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(234, 137)
+zoom = Vector2(2.5, 2.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n2g3v")
+}
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 464.0
+offset_bottom = 274.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2g3v")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_n2g3v")
+autoplay = true
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

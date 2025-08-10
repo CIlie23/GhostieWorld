@@ -1,10 +1,13 @@
-[gd_scene load_steps=47 format=3 uid="uid://c4ffbrtw1t1pu"]
+[gd_scene load_steps=58 format=3 uid="uid://c4ffbrtw1t1pu"]
 
 [ext_resource type="Script" uid="uid://dno8y708n55w1" path="res://Assets/Enemy/Bosses/BigJeff/jeff_battle_scene.gd" id="1_sobkl"]
 [ext_resource type="Script" uid="uid://c0dyyyjbq0qdd" path="res://BossDialogues.gd" id="2_mw7nj"]
+[ext_resource type="Texture2D" uid="uid://cv51mgkew17ii" path="res://Assets/Enemy/Bosses/BigJeff/maketater_3_png.png" id="2_q6lat"]
 [ext_resource type="PackedScene" uid="uid://bglb7qsbr31ye" path="res://Scenes/character_in_battle.tscn" id="4_45umo"]
+[ext_resource type="Texture2D" uid="uid://dv0p6q5h2iqyr" path="res://Assets/Backgrounds/bgwinter.png" id="4_t4unf"]
 [ext_resource type="PackedScene" uid="uid://cyl3emy1c653u" path="res://Assets/Enemy/Bosses/boss_base.tscn" id="5_37w1v"]
 [ext_resource type="Texture2D" uid="uid://j0u20hbi5hf8" path="res://Assets/GUI/defense.png" id="6_vav80"]
+[ext_resource type="Resource" uid="uid://0jutvwqltn1x" path="res://Assets/Enemy/Bosses/BigJeff/jeff_boss.tres" id="7_d74rn"]
 [ext_resource type="Texture2D" uid="uid://cbk0ijwb5c7oi" path="res://Assets/GUI/regen mana.png" id="7_ke8h5"]
 [ext_resource type="Texture2D" uid="uid://ct64cwr1bmgax" path="res://Assets/GUI/heal.png" id="8_f5pxn"]
 [ext_resource type="Texture2D" uid="uid://m3q0cxv00cix" path="res://Assets/GUI/miss.png" id="9_e62c8"]
@@ -15,23 +18,199 @@
 [ext_resource type="Texture2D" uid="uid://dxbmiolmcwv7x" path="res://Assets/Characters/Kullix/kullixPortrait.png" id="14_0lbm7"]
 [ext_resource type="PackedScene" uid="uid://d2rufk02jh22d" path="res://Assets/GUI/dialogue_box.tscn" id="15_f5iiq"]
 [ext_resource type="AudioStream" uid="uid://cjr0oq4vqy3pu" path="res://Assets/Sounds/YAYY.mp3" id="16_anf4r"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mw7nj"]
+[ext_resource type="AudioStream" uid="uid://daqv57lxv6yow" path="res://Assets/Sounds/shield.wav" id="16_jkjyw"]
+[ext_resource type="AudioStream" uid="uid://ke8t84fi65pp" path="res://Assets/Music/explambamsz.mp3" id="18_c8so7"]
+[ext_resource type="AudioStream" uid="uid://bdiytuy78pshl" path="res://Assets/Sounds/heal.wav" id="19_d74rn"]
+[ext_resource type="Shader" uid="uid://bplsxxwk7huo4" path="res://Scenes/overworld.gdshader" id="19_extn1"]
+[ext_resource type="AudioStream" uid="uid://uepyuiaw4ace" path="res://Assets/Sounds/mana.wav" id="20_gy5jf"]
+[ext_resource type="AudioStream" uid="uid://86m5hhu1utia" path="res://Assets/Sounds/crit.wav" id="22_4l5j1"]
+[ext_resource type="AudioStream" uid="uid://cib7o8ght7pm3" path="res://Assets/Sounds/miss.wav" id="23_uww33"]
+[ext_resource type="AudioStream" uid="uid://fkxnoo8nqkm2" path="res://Assets/Sounds/stun.wav" id="25_kpuis"]
 
 [sub_resource type="Resource" id="Resource_q6lat"]
 script = ExtResource("2_mw7nj")
 boss_name = "Jeff"
-boss_icon = SubResource("CompressedTexture2D_mw7nj")
-intro_lines = Array[String](["Bahahah! No one gets past Big Jeff! The cake is all MINE!"])
+boss_icon = ExtResource("2_q6lat")
+intro_lines = Array[String](["Bahahah! No one gets past Big Jeff! The cake is all [shake]MINE![/shake]"])
 attack_lines = Array[String](["Hahaha! The only way you're getting out of here is in an [color=aqua]ICECUBE![/color]"])
-hurt_lines = Array[String]([])
+hurt_lines = Array[String](["Huh.. you.. you hit pretty hard huh... I... I don't think I can quite hold myself anymore..."])
 spared_lines = Array[String](["You're... you're actually sparing me? Woah.. that's so.. cool man", "Thank you so much! I appreciate your forgiveness"])
 defeat_lines = Array[String]([])
 metadata/_custom_type_script = "uid://c0dyyyjbq0qdd"
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4764"]
+bg_color = Color(0.140447, 0.140447, 0.140447, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ed262"]
+bg_color = Color(0.6, 0, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ms847"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4ggb"]
+bg_color = Color(1.92523e-07, 0.656371, 0.997315, 1)
+
+[sub_resource type="Theme" id="Theme_esej7"]
+default_font = ExtResource("13_vb7aw")
+
+[sub_resource type="Theme" id="Theme_6g31o"]
+default_font = ExtResource("13_vb7aw")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m545y"]
+bg_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6g31o"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m545y"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_max = 5.0
+
+[sub_resource type="Animation" id="Animation_6xq1i"]
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/Victory:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-312, 173)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/Victory/HBoxContainer/RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_esej7"]
+resource_name = "Yippe"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_anf4r")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_6g31o"]
+resource_name = "victoryScreen"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/Victory:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-312, 173), Vector2(328, 173)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/Victory/HBoxContainer/RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.866667),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fu06w"]
+_data = {
+&"RESET": SubResource("Animation_6xq1i"),
+&"Yippe": SubResource("Animation_esej7"),
+&"victoryScreen": SubResource("Animation_6g31o")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_884s8"]
+shader = ExtResource("19_extn1")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
 [sub_resource type="Animation" id="Animation_vuvll"]
 resource_name = "DefenseEnemy"
-length = 0.6
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,7 +230,7 @@ tracks/1/path = NodePath("EffectsEnemy:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.766667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(188, 396), Vector2(188, 372)]
@@ -63,10 +242,34 @@ tracks/2/path = NodePath("EffectsEnemy:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.766667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_jkjyw")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_f856b"]
@@ -78,7 +281,7 @@ tracks/0/path = NodePath("EffectsPlayer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.601246, 1),
+"times": PackedFloat32Array(0, 0.5, 0.601246, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, false, true, false]
@@ -90,7 +293,7 @@ tracks/1/path = NodePath("EffectsPlayer:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.601246, 1),
+"times": PackedFloat32Array(0, 0.5, 0.601246, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(964, 396), Vector2(964, 340), Vector2(964, 396), Vector2(964, 340)]
@@ -106,6 +309,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("6_vav80"), ExtResource("7_ke8h5")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_jkjyw")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_tfvgr"]
@@ -147,6 +374,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("19_d74rn")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_vol83"]
 resource_name = "HealPlayer"
@@ -187,6 +438,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("19_d74rn")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_kbww3"]
 resource_name = "ManaPlayer"
@@ -226,6 +501,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("20_gy5jf")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_20f6w"]
@@ -410,6 +709,30 @@ tracks/14/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_jkjyw")]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_f4ggb"]
 resource_name = "camera_enemy"
@@ -445,7 +768,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_w4764"]
 resource_name = "crit"
-length = 0.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -493,6 +816,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("22_4l5j1")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_xdap8"]
@@ -545,6 +892,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("11_jm165")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("22_4l5j1")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ed262"]
@@ -650,6 +1021,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_uww33")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_84vmf"]
 resource_name = "miss_player"
@@ -701,6 +1096,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("9_e62c8")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_uww33")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3gnqe"]
@@ -790,6 +1209,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(188, 356), Vector2(188, 340), Vector2(188, 356), Vector2(188, 340), Vector2(188, 356)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25_kpuis")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_wb0gu"]
 resource_name = "stun_player"
@@ -878,6 +1321,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(964, 396), Vector2(964, 372), Vector2(964, 396), Vector2(964, 372), Vector2(964, 396)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25_kpuis")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w4764"]
 _data = {
@@ -898,176 +1365,29 @@ _data = {
 &"stun_player": SubResource("Animation_wb0gu")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4764"]
-bg_color = Color(0.140447, 0.140447, 0.140447, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ed262"]
-bg_color = Color(0.6, 0, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ms847"]
-bg_color = Color(0.141176, 0.141176, 0.141176, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4ggb"]
-bg_color = Color(1.92523e-07, 0.656371, 0.997315, 1)
-
-[sub_resource type="Theme" id="Theme_esej7"]
-default_font = ExtResource("13_vb7aw")
-
-[sub_resource type="Theme" id="Theme_6g31o"]
-default_font = ExtResource("13_vb7aw")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m545y"]
-bg_color = Color(0.241156, 0.241156, 0.241156, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6g31o"]
-bg_color = Color(1, 0, 0, 1)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m545y"]
-particle_flag_disable_z = true
-direction = Vector3(0, 1, 0)
-spread = 100.0
-initial_velocity_max = 100.0
-gravity = Vector3(0, 98, 0)
-scale_max = 5.0
-
-[sub_resource type="Animation" id="Animation_6xq1i"]
-length = 3.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Victory:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-312, 173)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HUD/Victory/HBoxContainer/RichTextLabel:visible_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_esej7"]
-resource_name = "Yippe"
-length = 3.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.53333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer:stream")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("16_anf4r")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("GPUParticles2D:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.53333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_6g31o"]
-resource_name = "victoryScreen"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Victory:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-312, 173), Vector2(328, 173)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HUD/Victory/HBoxContainer/RichTextLabel:visible_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.866667),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fu06w"]
-_data = {
-&"RESET": SubResource("Animation_6xq1i"),
-&"Yippe": SubResource("Animation_esej7"),
-&"victoryScreen": SubResource("Animation_6g31o")
-}
-
 [node name="JeffBattle" type="Node2D"]
 script = ExtResource("1_sobkl")
 boss_dialogue = SubResource("Resource_q6lat")
 
 [node name="BG" type="TextureRect" parent="."]
-offset_top = -8.0
-offset_right = 1157.0
-offset_bottom = 643.0
+offset_left = -3.0
+offset_top = -110.0
+offset_right = 1206.0
+offset_bottom = 662.0
 size_flags_horizontal = 4
+texture = ExtResource("4_t4unf")
 
 [node name="CharacterInBattle" parent="." instance=ExtResource("4_45umo")]
 position = Vector2(894, 288)
 
 [node name="TestBoxx" parent="." instance=ExtResource("5_37w1v")]
-position = Vector2(201, 424)
+position = Vector2(209, 360)
+BossStats = ExtResource("7_d74rn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(604, 335)
 scale = Vector2(3.50501, 3.50501)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_w4764")
-}
+zoom = Vector2(1.1, 1.1)
 
 [node name="GUIText" type="Sprite2D" parent="."]
 visible = false
@@ -1103,14 +1423,6 @@ Consumes 2 MP !"
 theme_override_fonts/font = ExtResource("13_vb7aw")
 text = "Attack"
 
-[node name="Kill" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
-visible = false
-layout_mode = 2
-tooltip_text = "Attack an enemy for 1 damage
-Consumes 2 MP !"
-theme_override_fonts/font = ExtResource("13_vb7aw")
-text = "Attack"
-
 [node name="Health" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -1131,9 +1443,8 @@ text = "Defense"
 [node name="Spare" type="Button" parent="HUD/AttackButtons/VBoxContainer"]
 visible = false
 layout_mode = 2
-tooltip_text = "Raises your defense by 5!
-Consumes 1 MP!
-Increases MP by 3!"
+tooltip_text = "Costs nothing!
+Gives the enemy a second chance"
 theme_override_fonts/font = ExtResource("13_vb7aw")
 text = "Spare"
 
@@ -1265,7 +1576,7 @@ offset_right = 534.0
 offset_bottom = 586.0
 theme_override_styles/background = SubResource("StyleBoxFlat_m545y")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6g31o")
-max_value = 10.0
+max_value = 20.0
 show_percentage = false
 
 [node name="DialogueBox" parent="HUD" instance=ExtResource("15_f5iiq")]
@@ -1299,8 +1610,36 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_anf4r")
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_c8so7")
+parameters/looping = true
+
+[node name="Shader" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="Shader"]
+material = SubResource("ShaderMaterial_884s8")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -599.0
+offset_top = -444.0
+offset_right = 632.0
+offset_bottom = 349.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_jkjyw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w4764")
+}
+
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Attack" to="." method="_on_attack_pressed"]
-[connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Kill" to="." method="_on_kill_pressed"]
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Defense" to="." method="_on_defense_pressed"]
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Spare" to="." method="_on_spare_pressed"]

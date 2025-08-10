@@ -11,15 +11,22 @@ extends Node2D
 
 @onready var btn_attack: Button = $HUD/AttackButtons/VBoxContainer/Attack
 @onready var btn_health: Button = $HUD/AttackButtons/VBoxContainer/Health
+@onready var bg: TextureRect = $BG
+@onready var bgaudio: AudioStreamPlayer = $AudioStreamPlayer
+@onready var shader: ColorRect = $Shader/shader
 
 #var ChosenMonster = 1
 var CurrentTurn = "Player"
 var isEnemyDying: bool = false
 var isStunned: bool = false
 var isPlayerStunned:bool = false
+var current_area = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	shader.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bgaudio.play()
+ # fallback
 	play_anims()
 	randomize()
 	chosemonster()
@@ -30,6 +37,10 @@ func play_anims():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	if Global.areaName != current_area:
+		current_area = Global.areaName
+		update_background()
 	
 	#PLACEHOLDER
 	if Input.is_key_pressed(KEY_SHIFT):
@@ -42,6 +53,14 @@ func _process(delta: float) -> void:
 	if not isEnemyDying and enemy.EnemyStats.Health <= 0:
 		isEnemyDying = true
 		switch_overworld()
+
+
+func update_background():
+	var bg_map = {
+		"outsidew lands": preload("res://Assets/Backgrounds/bgwinter.png"),
+		"balls lands": preload("res://Assets/Backgrounds/bgnormal.png")
+	}
+	bg.texture = preload("res://Assets/Backgrounds/bgnormal.png")
 
 func update_buttons():
 	btn_attack.disabled = kullix.PlayerStats.Mana < 2
@@ -92,11 +111,6 @@ func _on_health_pressed() -> void:
 	animation.play("camera_enemy")
 	switch_turn()
 		
-#func _on_change_pressed() -> void:
-	#print("pressed")
-	##ChosenMonster = 2
-	#chosemonster()
-
 func _on_defense_pressed() -> void:
 	kullix.PlayerStats.Mana -= 1
 	update_buttons()
@@ -111,19 +125,19 @@ func _on_defense_pressed() -> void:
 
 func switch_turn():
 	if CurrentTurn == "Monster":
-		if isPlayerStunned == true:
-			#animation.play("stun_player")
-			#await animation.animation_finished
-			#print("Player is stunned")
-			MonsterTurn()
-			animation.play("camera_enemy")
-			isPlayerStunned = false
-
-		await get_tree().create_timer(0.5).timeout
-		kullix.PlayerStats.Mana += 1
-		animation.play("ManaPlayer")
-		CurrentTurn = "Player"
-		hud.visible = true
+		if kullix.PlayerStats.Health <= 0:
+			get_tree().change_scene_to_file("res://Scenes/you_died.tscn")
+		else:
+			if isPlayerStunned == true:
+				MonsterTurn()
+				animation.play("camera_enemy")
+				isPlayerStunned = false
+				
+			await get_tree().create_timer(0.5).timeout
+			kullix.PlayerStats.Mana += 1
+			animation.play("ManaPlayer")
+			CurrentTurn = "Player"
+			hud.visible = true
 	elif CurrentTurn == "Player":
 		hud.visible = false
 		await get_tree().create_timer(0.5).timeout

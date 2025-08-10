@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="BossDialogue" load_steps=3 format=3 uid="uid://dcm2etfqttlak"]
 
-[ext_resource type="Texture2D" uid="uid://c4gelw5a5tsgy" path="res://Assets/Characters/Mask/maskPortrait.png" id="1_bmpaj"]
+[ext_resource type="Texture2D" uid="uid://cv51mgkew17ii" path="res://Assets/Enemy/Bosses/BigJeff/maketater_3_png.png" id="1_anl6d"]
 [ext_resource type="Script" uid="uid://c0dyyyjbq0qdd" path="res://BossDialogues.gd" id="1_d4mm3"]
 
 [resource]
 script = ExtResource("1_d4mm3")
-boss_name = "MaskMajor"
-boss_icon = ExtResource("1_bmpaj")
+boss_name = "BigJeff"
+boss_icon = ExtResource("1_anl6d")
 intro_lines = Array[String](["Well took me long enough but it seems that we've finally made it!", "I hope this works well", "It probably won't but... whatever!", "Welcome to the game kullix! And happy birthday to you!", "You cannot skip this dialogue so uhhhh yea you're forced to read this shit now", "Anyways! The game was supposed to be bigger but like", "I underestimated the ammount of work I have to do", "And overestimated my skills", "ANyways! Welcome to the tutorial! I will teach you how to play the game!", "Let's first start with some [rainbow][wave]FIGHTING[/wave][/rainbow]!", "Haha did you like that? I can use [rainbow]rainbow[/rainbow] text!", "Anyways, let's start with the [color=red]Attack[/color]!"])
 attack_lines = Array[String]([])
 hurt_lines = Array[String](["Ouch yea no that hurt", "Don't do that shit again", "You probably noticed that attacks take away 2 points of mana", "Every ability takes away mana, some more than others", "But don't worry cause you get [color=blue]1 mana[/color] per turn", "But just in case, you can press [color=red]Defend[/color] to gain some mana", "And uh, some defense I guess... Yea no i didn't plan this right", "Also, your attack can sometimes [color=yellow]Stun[/color], [color=red]Crit[/color] or Miss !", "I wanted to spice up stuff a bit so, I added this mechanic", "Oh and, pets can increase the chances of those things happening!", "Oh and pets can increase other stats too! Go get them from the shops around the map, they're pretty helpful", "Anyways, no I won't show you the other buttons, you'll see them once you enter a battle", "Now, I'll teach how how to [tornado]SPARE[/tornado] !", "You can spare some of the enemies", "And by enemies, I mean the bosses, I kinda ran out of time", "Or you can [color=red]kill[/color] them, do as you please!", "Here! I will let you try on me!"])

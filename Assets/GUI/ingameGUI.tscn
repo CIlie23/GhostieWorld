@@ -56,6 +56,7 @@ theme_override_fonts/font = ExtResource("1_onc8g")
 text = "ADDONS"
 
 [node name="Pets" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_onc8g")
 text = "PETS"

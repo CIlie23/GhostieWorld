@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2gt00188yjfv"]
+
+[ext_resource type="Script" uid="uid://be7vcl0pnobqs" path="res://Scenes/endings.gd" id="1_5q1i5"]
+[ext_resource type="Texture2D" uid="uid://bx3ush7hguhf8" path="res://Assets/Endings/endingOne.png" id="2_ak6io"]
+[ext_resource type="Shader" uid="uid://bplsxxwk7huo4" path="res://Scenes/overworld.gdshader" id="3_ak6io"]
+[ext_resource type="AudioStream" uid="uid://bsq0angc413dg" path="res://Assets/Music/birthday.mp3" id="4_7wbfy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wbfy"]
+shader = ExtResource("3_ak6io")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="Endings" type="Node2D"]
+script = ExtResource("1_5q1i5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = -8.0
+offset_right = 1155.0
+offset_bottom = 656.0
+texture = ExtResource("2_ak6io")
+
+[node name="Shader" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="shader" type="ColorRect" parent="Shader"]
+material = SubResource("ShaderMaterial_7wbfy")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -599.0
+offset_top = -444.0
+offset_right = 632.0
+offset_bottom = 349.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7wbfy")
+autoplay = true
+parameters/looping = true

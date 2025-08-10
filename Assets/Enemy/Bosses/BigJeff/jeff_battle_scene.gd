@@ -13,7 +13,7 @@ extends Node2D
 @onready var btn_health: Button = $HUD/AttackButtons/VBoxContainer/Health
 @onready var btn_defense: Button = $HUD/AttackButtons/VBoxContainer/Defense
 @onready var btn_spare: Button = $HUD/AttackButtons/VBoxContainer/Spare
-@onready var btn_kill: Button = $HUD/AttackButtons/VBoxContainer/Kill
+#@onready var btn_kill: Button = $HUD/AttackButtons/VBoxContainer/Kill
 
 @onready var text_box: Control = $HUD/DialogueBox
 
@@ -25,6 +25,9 @@ extends Node2D
 
 @onready var victoryScreen: Control = $HUD/Victory
 @onready var cash_label: RichTextLabel = $HUD/Victory/HBoxContainer/RichTextLabel
+@onready var bgAudio: AudioStreamPlayer = $AudioStreamPlayer2
+
+@onready var shader: ColorRect = $Shader/ColorRect
 
 var CurrentTurn = "Player"
 var isEnemyDying: bool = false
@@ -42,12 +45,12 @@ func play_intro():
 		await get_tree().create_timer(1.0).timeout
 	awesome_sequence(ActionSequences[0])
 	
-func play_hurt():
-	for line in boss_dialogue.hurt_lines:
-		dialogue_box.display_line(line, boss_dialogue.boss_name, boss_dialogue.boss_icon)
-		await text_box.type_writer_effect.animation_finished
-		await get_tree().create_timer(1.0).timeout
-	awesome_sequence(ActionSequences[2])
+#func play_hurt():
+	#for line in boss_dialogue.hurt_lines:
+		#dialogue_box.display_line(line, boss_dialogue.boss_name, boss_dialogue.boss_icon)
+		#await text_box.type_writer_effect.animation_finished
+		#await get_tree().create_timer(1.0).timeout
+	#awesome_sequence(ActionSequences[2])
 
 func play_spare():
 	otherAnimations.play("Yippe")
@@ -56,23 +59,27 @@ func play_spare():
 		await text_box.type_writer_effect.animation_finished
 		await get_tree().create_timer(1.0).timeout
 
-	await get_tree().create_timer(2.0).timeout
-	get_tree().change_scene_to_file("res://Scenes/overworld.tscn")
-	
+	await get_tree().create_timer(5.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/endings.tscn")
+
 func play_kill():
 	otherAnimations.play("victoryScreen")
-	Global.cash += 10
+	Global.cash += 100
 	cash_label.text = "[rainbow]+" + str(10) + "[/rainbow]"
+	
+	await get_tree().create_timer(5.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/endings.tscn")
 
 func awesome_sequence(chosenAction): #for fighting
 	match chosenAction:
 		"Fighting":
 			dialogue_box.close_dialogue()
-			btn_attack.visible = true	
-		"Healing":
+			btn_attack.visible = true
+			btn_defense.visible = true
+			btn_health.visible = true
+		"Under15":
 			btn_attack.visible = false	
 			dialogue_box.open_dialogue()
-			play_hurt()
 		"Choice":
 			isSparing = true
 			dialogue_box.close_dialogue()
@@ -80,23 +87,25 @@ func awesome_sequence(chosenAction): #for fighting
 			btn_attack.visible = true
 			btn_spare.visible = true
 		"Spare":
+			hud.visible = false
 			#btn_kill.visible = false
-			btn_attack.visible = false
-			btn_spare.visible = false
+			#btn_attack.visible = false
+			#btn_spare.visible = false
 			dialogue_box.open_dialogue()
 			play_spare()
-		"Kill":
-			btn_kill.visible = false
-			btn_spare.visible = false
-			play_kill()
+		#"Kill":
+#d			btn_kill.visible = false
+			#btn_spare.visible = false
+			#play_kill()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("im jeff")
+	shader.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bgAudio.play()
 	dialogue_box.visible = true
 	enemy.BossStats = load("res://Assets/Enemy/Bosses/BigJeff/jeff_boss.tres")
 		
-	#play_intro()
+	play_intro()
 	
 	var sprite_node = enemy.get_node("Sprite2D") 
 	sprite_node.texture = enemy.BossStats.sprite
@@ -150,14 +159,15 @@ func _on_attack_pressed() -> void:
 		enemy.BossStats.take_damage(kullix.PlayerStats.Attack * 2)
 	elif randf() < kullix.PlayerStats.MissChance:
 		animation.play("miss")
-	#elif randf() < kullix.PlayerStats.StunChance:
-		##print("Enemy Stun")
-		#animation.play("stun")
-		#enemy.BossStats.take_damage(kullix.PlayerStats.Attack + 2)
-		#isStunned = true
+	elif randf() < kullix.PlayerStats.StunChance:
+		#print("Enemy Stun")
+		animation.play("stun")
+		enemy.BossStats.take_damage(kullix.PlayerStats.Attack + 2)
+		isStunned = true
 	else:
 		enemy.BossStats.take_damage(kullix.PlayerStats.Attack)
 	
+	check_boss_health()
 	kullix.play_attack_anim()
 	#enemy.play_damage_anim()
 	await get_tree().create_timer(0.5).timeout
@@ -185,6 +195,7 @@ func _on_defense_pressed() -> void:
 	switch_turn()
 
 func _on_spare_pressed() -> void:
+	bgAudio.stop()
 	awesome_sequence(ActionSequences[3])
 
 func _on_kill_pressed() -> void:
@@ -193,29 +204,33 @@ func _on_kill_pressed() -> void:
 
 func switch_turn():
 	if CurrentTurn == "Monster":
-		if isPlayerStunned == true:
-			MonsterTurn(monsterActions[3])
-			animation.play("camera_enemy")
-			isPlayerStunned = false
-
-		await get_tree().create_timer(0.5).timeout
-		kullix.PlayerStats.Mana += 1
-		animation.play("ManaPlayer")
-		CurrentTurn = "Player"
-		hud.visible = true
+		if kullix.PlayerStats.Health <= 0:
+			get_tree().change_scene_to_file("res://Scenes/you_died.tscn")
+		else:
+			if isPlayerStunned == true:
+				MonsterTurn()
+				animation.play("camera_enemy")
+				isPlayerStunned = false
+			
+			await get_tree().create_timer(0.5).timeout
+			kullix.PlayerStats.Mana += 1
+			animation.play("ManaPlayer")
+			CurrentTurn = "Player"
+			hud.visible = true
 	elif CurrentTurn == "Player":
-		hud.visible = false
-		await get_tree().create_timer(0.5).timeout
-		CurrentTurn = "Monster"
+		if enemy.BossStats.Health <= 0:
+			get_tree().change_scene_to_file("res://Scenes/endings.tscn")
+		else:
+			hud.visible = false
+			await get_tree().create_timer(0.5).timeout
+			CurrentTurn = "Monster"
 		
-		MonsterTurn(monsterActions[3])
+		MonsterTurn()
 
-var monsterActions: Array = ["attack", "heal", "defend", "doNothing"]
-var possibleActions
-
-func MonsterTurn(possibleActions):
-		
+func MonsterTurn():
+	#check_boss_health()
 	if enemy.BossStats.Health <= 0:
+		Global.isJeffAlive = false
 		return
 	if isStunned == true:
 		switch_turn()
@@ -223,9 +238,10 @@ func MonsterTurn(possibleActions):
 		animation.play("camera_player")
 		isStunned = false
 		return
-
-	#var possibleActions = monsterActions.pick_random()
-
+	
+	var monsterActions: Array = ["attack", "heal", "defend"]
+	var possibleActions = monsterActions.pick_random()
+	
 	match possibleActions:
 		"attack": 
 			animation.play("camera_player")
@@ -273,15 +289,29 @@ func MonsterTurn(possibleActions):
 			switch_turn()
 			awesome_sequence(ActionSequences[1])
 
-#------------------------------------------------------------------------
-func chosemonster():
-	var ChosenMonster = [1, 2, 3].pick_random()
-	if ChosenMonster == 1:
-		enemy.BossStats = load("res://Assets/Enemy/EnemyResources/bug/bug.tres")
-	elif ChosenMonster == 2:
-		enemy.BossStats = load("res://Assets/Enemy/EnemyResources/dummy/dummy.tres")
-	elif ChosenMonster == 3:
-		enemy.BossStats = load("res://Assets/Enemy/EnemyResources/shroom/shroom.tres")
+var boss_phase_75 = false
+var boss_phase_50 = false
+var boss_phase_20 = false
 
-	var sprite_node = enemy.get_node("Sprite2D") 
-	sprite_node.texture = enemy.BossStats.sprite
+func check_boss_health():
+
+	if not boss_phase_75 and enemy.BossStats.Health <= 15:
+		boss_phase_75 = true
+		show_phase_dialogue(boss_dialogue.attack_lines)
+
+	if not boss_phase_50 and enemy.BossStats.Health <= 7:
+		boss_phase_50 = true
+		show_phase_dialogue(boss_dialogue.hurt_lines)
+
+	if not boss_phase_20 and enemy.BossStats.Health <= 5:
+		boss_phase_20 = true
+		btn_spare.visible = true 
+
+
+func show_phase_dialogue(lines: Array):
+	dialogue_box.open_dialogue()
+	for line in lines:
+		dialogue_box.display_line(line, boss_dialogue.boss_name, boss_dialogue.boss_icon)
+		await text_box.type_writer_effect.animation_finished
+		await get_tree().create_timer(1.0).timeout
+	dialogue_box.close_dialogue()

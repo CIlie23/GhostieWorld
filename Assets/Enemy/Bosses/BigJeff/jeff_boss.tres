@@ -5,13 +5,13 @@
 
 [resource]
 script = ExtResource("1_6l34x")
-Name = "Testificate"
-Attack = 1
-Health = 10
+Name = "BigJeff"
+Attack = 2
+Health = 20
 Defense = 1
 Mana = 1
-CritChance = 0.0
-MissChance = 0.0
-StunChance = 0.0
+CritChance = 0.3
+MissChance = 0.3
+StunChance = 0.3
 sprite = ExtResource("2_abequ")
 metadata/_custom_type_script = "uid://fbj1xoxy1o5o"

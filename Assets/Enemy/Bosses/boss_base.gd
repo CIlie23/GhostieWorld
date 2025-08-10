@@ -20,13 +20,13 @@ func chooseOption():
 	
 	match possibleActions:
 		"option1":
-			print("Attack one!")
+			#print("Attack one!")
 			animation.play("attackOne")
 		"option2":
-			print("Attack two!")
+			#print("Attack two!")
 			animation.play("attackTwo")
 		"option3":
-			print("Attack tree!")
+			#print("Attack tree!")
 			animation.play("attackThree")
 
 func play_dead_anim():

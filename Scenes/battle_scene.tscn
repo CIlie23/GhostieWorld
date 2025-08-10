@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://veeajhcie23v"]
+[gd_scene load_steps=45 format=3 uid="uid://veeajhcie23v"]
 
 [ext_resource type="Script" uid="uid://6wakr6jwcaic" path="res://Scenes/battle_scene.gd" id="1_hdvqd"]
+[ext_resource type="Texture2D" uid="uid://tt47b61ygdie" path="res://Assets/Backgrounds/bgnormal.png" id="2_84vmf"]
 [ext_resource type="PackedScene" uid="uid://bglb7qsbr31ye" path="res://Scenes/character_in_battle.tscn" id="2_anwxn"]
 [ext_resource type="PackedScene" uid="uid://cbvjlj84j6h51" path="res://Scenes/enemy.tscn" id="3_e5vbs"]
 [ext_resource type="Texture2D" uid="uid://m3q0cxv00cix" path="res://Assets/GUI/miss.png" id="4_3gnqe"]
@@ -8,14 +9,22 @@
 [ext_resource type="Texture2D" uid="uid://bpt3aqi1asqs5" path="res://Assets/GUI/stun.png" id="5_gt16y"]
 [ext_resource type="Texture2D" uid="uid://cbk0ijwb5c7oi" path="res://Assets/GUI/regen mana.png" id="5_wb0gu"]
 [ext_resource type="Texture2D" uid="uid://mhuu2lc2eako" path="res://Assets/GUI/crit.png" id="6_20f6w"]
+[ext_resource type="AudioStream" uid="uid://daqv57lxv6yow" path="res://Assets/Sounds/shield.wav" id="6_778cw"]
 [ext_resource type="Texture2D" uid="uid://j0u20hbi5hf8" path="res://Assets/GUI/defense.png" id="8_ms847"]
 [ext_resource type="Texture2D" uid="uid://dxbmiolmcwv7x" path="res://Assets/Characters/Kullix/kullixPortrait.png" id="8_w4764"]
 [ext_resource type="Texture2D" uid="uid://d4cs5f2lhcmvy" path="res://Assets/GUI/stars.png" id="9_ed262"]
 [ext_resource type="Texture2D" uid="uid://ct64cwr1bmgax" path="res://Assets/GUI/heal.png" id="9_f4ggb"]
+[ext_resource type="AudioStream" uid="uid://bdiytuy78pshl" path="res://Assets/Sounds/heal.wav" id="9_vuvll"]
+[ext_resource type="AudioStream" uid="uid://uepyuiaw4ace" path="res://Assets/Sounds/mana.wav" id="10_tfvgr"]
+[ext_resource type="AudioStream" uid="uid://86m5hhu1utia" path="res://Assets/Sounds/crit.wav" id="14_kbww3"]
+[ext_resource type="AudioStream" uid="uid://2hk0daelgs6t" path="res://Assets/Music/brash.mp3" id="14_xdap8"]
+[ext_resource type="Shader" uid="uid://bplsxxwk7huo4" path="res://Scenes/overworld.gdshader" id="15_f856b"]
+[ext_resource type="AudioStream" uid="uid://cib7o8ght7pm3" path="res://Assets/Sounds/miss.wav" id="15_kre2b"]
+[ext_resource type="AudioStream" uid="uid://fkxnoo8nqkm2" path="res://Assets/Sounds/stun.wav" id="17_5gdnp"]
 
 [sub_resource type="Animation" id="Animation_vuvll"]
 resource_name = "DefenseEnemy"
-length = 0.6
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,7 +44,7 @@ tracks/1/path = NodePath("EffectsEnemy:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.766667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(188, 396), Vector2(188, 372)]
@@ -47,10 +56,34 @@ tracks/2/path = NodePath("EffectsEnemy:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.766667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_778cw")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_f856b"]
@@ -62,7 +95,7 @@ tracks/0/path = NodePath("EffectsPlayer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.601246, 1),
+"times": PackedFloat32Array(0, 0.5, 0.601246, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, false, true, false]
@@ -74,7 +107,7 @@ tracks/1/path = NodePath("EffectsPlayer:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.601246, 1),
+"times": PackedFloat32Array(0, 0.5, 0.601246, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(964, 396), Vector2(964, 340), Vector2(964, 396), Vector2(964, 340)]
@@ -90,6 +123,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("8_ms847"), ExtResource("5_wb0gu")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_778cw")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_tfvgr"]
@@ -131,6 +188,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_vuvll")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_vol83"]
 resource_name = "HealPlayer"
@@ -171,6 +252,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_vuvll")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_kbww3"]
 resource_name = "ManaPlayer"
@@ -210,6 +315,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_tfvgr")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_20f6w"]
@@ -394,6 +523,30 @@ tracks/14/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_778cw")]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_f4ggb"]
 resource_name = "camera_enemy"
@@ -429,7 +582,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_w4764"]
 resource_name = "crit"
-length = 0.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -477,6 +630,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_kbww3")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_xdap8"]
@@ -529,6 +706,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("6_20f6w")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_kbww3")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ed262"]
@@ -634,6 +835,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_kre2b")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_84vmf"]
 resource_name = "miss_player"
@@ -685,6 +910,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("4_3gnqe")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_kre2b")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3gnqe"]
@@ -774,6 +1023,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(188, 356), Vector2(188, 340), Vector2(188, 356), Vector2(188, 340), Vector2(188, 356)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("17_5gdnp")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_wb0gu"]
 resource_name = "stun_player"
@@ -862,6 +1135,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(964, 396), Vector2(964, 372), Vector2(964, 396), Vector2(964, 372), Vector2(964, 396)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("17_5gdnp")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w4764"]
 _data = {
@@ -894,12 +1191,45 @@ bg_color = Color(0.141176, 0.141176, 0.141176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4ggb"]
 bg_color = Color(1.92523e-07, 0.656371, 0.997315, 1)
 
+[sub_resource type="Theme" id="Theme_xdap8"]
+default_font = ExtResource("4_e5vbs")
+
+[sub_resource type="Theme" id="Theme_f856b"]
+default_font = ExtResource("4_e5vbs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_778cw"]
+shader = ExtResource("15_f856b")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
 [node name="BattleScene" type="Node2D"]
 script = ExtResource("1_hdvqd")
 
 [node name="BG" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 39.0
+offset_top = -180.0
+offset_right = 1180.0
+offset_bottom = 650.0
+texture = ExtResource("2_84vmf")
 
 [node name="CharacterInBattle" parent="." instance=ExtResource("2_anwxn")]
 position = Vector2(894, 288)
@@ -1025,21 +1355,23 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_f4ggb")
 max_value = 10.0
 show_percentage = false
 
-[node name="Control" type="Control" parent="HUD"]
-visible = false
+[node name="Victory" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 216.0
+offset_left = -312.0
 offset_top = 173.0
-offset_right = 488.0
+offset_right = -40.0
 offset_bottom = 471.0
 
-[node name="Panel" type="Panel" parent="HUD/Control"]
-layout_mode = 0
-offset_right = 272.0
-offset_bottom = 297.0
+[node name="Panel" type="Panel" parent="HUD/Victory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="HUD/Control"]
+[node name="Label" type="RichTextLabel" parent="HUD/Victory"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1049,18 +1381,40 @@ offset_top = 24.0
 offset_right = 64.0
 offset_bottom = 47.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("4_e5vbs")
-text = "VICTORY!"
+theme = SubResource("Theme_xdap8")
+bbcode_enabled = true
+text = "[rainbow]VICTORY![/rainbow]"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="HUD/Control"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 112.0
-offset_right = 208.0
-offset_bottom = 135.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Victory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -20.0
+offset_right = 64.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="HUD/Victory/HBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_e5vbs")
-text = "CASH: 100"
+text = "CASH:"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Victory/HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_f856b")
+bbcode_enabled = true
+text = "[rainbow]10[/rainbow]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EffectsEnemy" type="Sprite2D" parent="."]
 position = Vector2(188, 356)
@@ -1071,6 +1425,30 @@ texture = ExtResource("9_ed262")
 position = Vector2(964, 396)
 scale = Vector2(3.95313, 3.95313)
 texture = ExtResource("9_f4ggb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_xdap8")
+parameters/looping = true
+
+[node name="Shader" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="shader" type="ColorRect" parent="Shader"]
+material = SubResource("ShaderMaterial_778cw")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -599.0
+offset_top = -444.0
+offset_right = 632.0
+offset_bottom = 349.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_778cw")
 
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="HUD/AttackButtons/VBoxContainer/Health" to="." method="_on_health_pressed"]
