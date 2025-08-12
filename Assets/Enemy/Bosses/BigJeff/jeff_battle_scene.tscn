@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dv0p6q5h2iqyr" path="res://Assets/Backgrounds/bgwinter.png" id="4_t4unf"]
 [ext_resource type="PackedScene" uid="uid://cyl3emy1c653u" path="res://Assets/Enemy/Bosses/boss_base.tscn" id="5_37w1v"]
 [ext_resource type="Texture2D" uid="uid://j0u20hbi5hf8" path="res://Assets/GUI/defense.png" id="6_vav80"]
-[ext_resource type="Resource" uid="uid://0jutvwqltn1x" path="res://Assets/Enemy/Bosses/BigJeff/jeff_boss.tres" id="7_d74rn"]
+[ext_resource type="Resource" uid="uid://0jutvwqltn1x" path="res://Assets/Enemy/Bosses/MaskTutorial/mask_boss.tres" id="7_d74rn"]
 [ext_resource type="Texture2D" uid="uid://cbk0ijwb5c7oi" path="res://Assets/GUI/regen mana.png" id="7_ke8h5"]
 [ext_resource type="Texture2D" uid="uid://ct64cwr1bmgax" path="res://Assets/GUI/heal.png" id="8_f5pxn"]
 [ext_resource type="Texture2D" uid="uid://m3q0cxv00cix" path="res://Assets/GUI/miss.png" id="9_e62c8"]

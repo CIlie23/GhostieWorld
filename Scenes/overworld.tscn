@@ -21,7 +21,7 @@ var chosenScene = \"\"
 func _ready():
 	if Global.last_player_position != Vector2.ZERO:
 		player.position = Global.last_player_position
-	timer.start()
+	#timer.start()
 
 func _on_timer_timeout() -> void:
 	chosenScene = sceneArray.pick_random()

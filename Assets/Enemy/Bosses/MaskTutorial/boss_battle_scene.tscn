@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c26nc5fpyo3xq" path="res://Assets/Backgrounds/istockphoto-1368456018-640x640.jpg" id="3_8nb8m"]
 [ext_resource type="PackedScene" uid="uid://bglb7qsbr31ye" path="res://Scenes/character_in_battle.tscn" id="4_e466m"]
 [ext_resource type="PackedScene" uid="uid://cyl3emy1c653u" path="res://Assets/Enemy/Bosses/boss_base.tscn" id="5_pcdr2"]
-[ext_resource type="Resource" uid="uid://0jutvwqltn1x" path="res://Assets/Enemy/Bosses/BigJeff/jeff_boss.tres" id="6_600i4"]
+[ext_resource type="Resource" uid="uid://0jutvwqltn1x" path="res://Assets/Enemy/Bosses/MaskTutorial/mask_boss.tres" id="6_600i4"]
 [ext_resource type="Texture2D" uid="uid://j0u20hbi5hf8" path="res://Assets/GUI/defense.png" id="6_qqnfj"]
 [ext_resource type="Texture2D" uid="uid://cbk0ijwb5c7oi" path="res://Assets/GUI/regen mana.png" id="7_01dr0"]
 [ext_resource type="Texture2D" uid="uid://ct64cwr1bmgax" path="res://Assets/GUI/heal.png" id="8_vqxfi"]
@@ -173,6 +173,21 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_m717p"]
+resource_name = "fadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_600i4"]
 resource_name = "maskTheme"
 tracks/0/type = "value"
@@ -226,21 +241,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_m717p"]
-resource_name = "fadeOut"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fu06w"]
