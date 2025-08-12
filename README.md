@@ -9,7 +9,7 @@
 
 ## Credits:
 
-- Turn based combat from [SilentStares Art and More!](https://www.youtube.com/channel/UC7u4PyiLhRcVSzBiSRraXpQ) find the original code [here](https://github.com/SilentStares/FreeTurnBasedCombatGodot)
+- Turn based combat from [SilentStares Art and More!](https://www.youtube.com/channel/UC7u4PyiLhRcVSzBiSRraXpQ) find the original code [here](https://github.com/SilentStares/FreeTurnBasedCombatGodot) and the original tutorial [here](https://youtu.be/jjVKEin4vP0?si=uJtwkQuA8pNJoGG1)
 - [Kullix](https://www.youtube.com/@Kullix) I stole some music from him:
     - [FNF Ghosties Average](https://soundcloud.com/purpl3-g4laxy/fnf-ghosties-average-main-menu-theme)
     - [Supperfast](https://soundcloud.com/purpl3-g4laxy/supperfast-fnf-ghosties-pause-theme)
