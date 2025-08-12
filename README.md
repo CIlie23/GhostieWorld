@@ -3,7 +3,7 @@
 </p>
 
 
-<h1 align="center">A super short "game" made for a friend</h1>
+<h3 align="center">A super short "game" made for a friend</h3>
 
 ---
 
@@ -15,7 +15,7 @@
     - [Supperfast](https://soundcloud.com/purpl3-g4laxy/supperfast-fnf-ghosties-pause-theme)
     - [explambamsz](https://soundcloud.com/purpl3-g4laxy/explambamsz)
     - [brash](https://on.soundcloud.com/narQQeZoquT7siw2xD)
-- Scott Cowthon - Stole some fnaf world tracks
+- Scott Cawthon - Borrowed some FNAF World tracks
     - [FNaF World OST - 8 Bit Travel 1](https://youtu.be/_OAJNYfQOfk?si=9oUEAwSrjW4Fx6RK)
     - [FNaF World OST - City Theme](https://youtu.be/jodqNCCUMV8?si=N_7wflbyq2t4KfqL)
 - [Krappy Kazoo](https://www.youtube.com/@krappykazoo):
