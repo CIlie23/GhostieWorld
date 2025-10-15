@@ -1,9 +1,0 @@
-res://Scenes/overworld.tscn
-res://Scenes/overworld.gdshader
-res://Scenes/shaders/enemyDeath.gdshader
-res://Assets/Enemy/Bosses/BigJeff/jeff_battle_scene.tscn
-res://Scenes/endings.tscn
-res://Scenes/main_menu.tscn
-res://Assets/Enemy/Bosses/MaskTutorial/boss_battle_scene.tscn
-res://Scenes/battle_scene.tscn
-res://Scenes/character_in_battle.tscn
